@@ -1,0 +1,24 @@
+@import url('https://fonts.googleapis.com/css2?family=Rock+Salt&display=swap');
+@import "tailwindcss";
+
+
+html {
+    scroll-behavior: smooth;
+  }
+
+  html, body {
+    font-family: 'Exo 2', sans-serif;
+  }
+
+  .rock-salt {
+    font-family: 'Rock Salt', cursive !important;
+  }
+  
+  .cosmic-etch {
+    position: relative;
+    color: #ffffff; /* Cosmic white */
+    text-shadow: 0 0 4px #2dd4bf80; /* Subtle teal glow */
+    padding: 0.25rem 0.5rem; /* Minimal padding */
+    display: inline-block; /* Mobile-friendly */
+    -webkit-text-stroke: 1px #2dd4bf; /* Thin teal outline */
+  }
