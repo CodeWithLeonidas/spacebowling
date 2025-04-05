@@ -37,12 +37,20 @@ const GalleryPreview = () => {
 
   const itemVariants = {
     hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.5, ease: "easeOut" },
+    },
   };
 
   const modalVariants = {
     hidden: { opacity: 0, scale: 0.8 },
-    visible: { opacity: 1, scale: 1, transition: { duration: 0.3, ease: "easeOut" } },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      transition: { duration: 0.3, ease: "easeOut" },
+    },
     exit: { opacity: 0, scale: 0.8, transition: { duration: 0.2 } },
   };
 
@@ -67,7 +75,9 @@ const GalleryPreview = () => {
         >
           A sneak peek into our space-themed bowling experience!
         </motion.p>
-        <span className="sr-only">Space Bowling Greece - Fun bowling gallery photos</span>
+        <span className="sr-only">
+          Space Bowling Greece - Fun bowling gallery photos
+        </span>
       </div>
 
       <motion.div
@@ -100,7 +110,7 @@ const GalleryPreview = () => {
 
       <div className="text-center mt-12">
         <motion.button
-          className="relative inline-block px-8 py-3 bg-gradient-to-b from-gray-800 to-gray-900 text-cyan-300 rounded-md font-semibold text-lg shadow-lg border border-cyan-300/40 overflow-hidden"
+          className="relative inline-block px-8 py-3 bg-gradient-to-b from-gray-800 to-gray-900 text-cyan-300 rounded-md font-semibold text-lg shadow-lg border border-cyan-300/40 overflow-hidden cursor-pointer hover:brightness-110 transition duration-300"
           variants={buttonVariants}
           initial="idle"
           animate={isPressed ? "pressed" : "idle"}

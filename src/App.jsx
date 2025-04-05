@@ -20,7 +20,7 @@ function App() {
         <div className="bg-gray-900 text-white">
           {/* Default metadata for all pages */}
           <Helmet>
-            <title>Space Bowling</title>
+            <title>Space Bowling | Halkidiki</title>
             <meta
               name="description"
               content="Experience the ultimate bowling adventure at Space Bowling in Kalithea, Halkidiki. Enjoy cosmic vibes, top-tier lanes, delicious drinks, and unforgettable moments!"

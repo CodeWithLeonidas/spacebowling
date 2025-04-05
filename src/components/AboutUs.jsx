@@ -115,9 +115,12 @@ export default function AboutUs() {
             journey through the galaxy. So grab your spacesuit and let the good
             times roll!
           </p>
-          <span className="sr-only">Space Bowling Greece - tourist district in Kalithea Halikidi for all ages, we provide drinks and fun</span>
+          <span className="sr-only">
+            Space Bowling Greece - tourist district in Kalithea Halikidi for all
+            ages, we provide drinks and fun
+          </span>
           <motion.button
-            className="relative inline-block px-8 py-3 bg-gradient-to-b from-gray-800 to-gray-900 text-cyan-300 rounded-md font-semibold text-lg shadow-lg border border-cyan-300/40 overflow-hidden mt-10"
+            className="relative inline-block px-8 py-3 bg-gradient-to-b from-gray-800 to-gray-900 text-cyan-300 rounded-md font-semibold text-lg shadow-lg border border-cyan-300/40 overflow-hidden mt-10 hover:brightness-110 transition duration-300 cursor-pointer"
             variants={buttonVariants}
             initial="idle"
             animate={isPressed ? "pressed" : "idle"}
