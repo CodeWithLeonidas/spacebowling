@@ -4,7 +4,11 @@ import { FaFacebookF, FaInstagram } from "react-icons/fa";
 const Footer = () => {
   const footerVariants = {
     hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.8, ease: "easeOut" },
+    },
   };
 
   const itemVariants = {
@@ -20,7 +24,8 @@ const Footer = () => {
     <footer
       className="py-16 text-white relative overflow-hidden"
       style={{
-        background: "radial-gradient(circle at center, #1e1b4b 0%, #0f172a 100%)",
+        background:
+          "radial-gradient(circle at center, #1e1b4b 0%, #0f172a 100%)",
       }}
     >
       <div className="absolute inset-0 pointer-events-none">
@@ -42,7 +47,9 @@ const Footer = () => {
             <p className="text-gray-300 text-base md:text-lg mt-3 max-w-md">
               Contact us or follow our journey.
             </p>
-            <span className="sr-only">Space Bowling Greece - Cosmic bowling contact and social media</span>
+            <span className="sr-only">
+              Space Bowling Greece - Cosmic bowling contact and social media
+            </span>
           </motion.div>
 
           <motion.div custom={1} variants={itemVariants} className="space-y-4">
@@ -95,7 +102,10 @@ const Footer = () => {
           </motion.div>
         </div>
 
-        <div className="mt-12 pt-8 border-t border-gray-700/50 text-center">
+        <div className="mt-12 pt-8 border-t border-gray-700/50 text-center space-y-2">
+          <p className="text-gray-300 text-base">
+            📍 Kallithea, Halkidiki, Club Aerea
+          </p>
           <small className="text-gray-400 text-base">
             © {new Date().getFullYear()} Space Bowling. All rights reserved.
           </small>
