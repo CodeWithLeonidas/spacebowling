@@ -10,6 +10,7 @@ import OurServices from "./components/OurServices";
 import WorkingHours from "./components/WorkingHours";
 import Footer from "./components/Footer";
 import ContactForm from "./components/ContactForm";
+import { Analytics } from "@vercel/analytics/react"; // Added Analytics import
 
 function App() {
   return (
@@ -30,7 +31,7 @@ function App() {
               content="bowling bar Halkidiki, bowling in Kalithea, Space Bowling Greece, nightlife in Halkidiki, fun activities in Kalithea, bowling and drinks, tourist attractions in Halkidiki"
             />
             <meta name="robots" content="index, follow" />
-            <link rel="canonical" href="https://spacebowling.gr/" />
+            <link rel="canonical" href="https://spacebowling.vercel.app/" />
           </Helmet>
 
           <Navbar />
@@ -56,18 +57,18 @@ function App() {
               element={
                 <>
                   <Helmet>
-                    <title>Your Website Name - Gallery</title>
+                    <title>Space Bowling - Gallery</title>
                     <meta
                       name="description"
                       content="Explore our gallery at Your Website Name - see our work and projects."
                     />
                     <meta
                       name="keywords"
-                      content="gallery, your, website, keywords"
+                      content="gallery, space bowling, bowling, Halkidiki, Kalithea, photos, images"
                     />
                     <link
                       rel="canonical"
-                      href="https://yourwebsite.com/gallery"
+                      href="https://spacebowling.vercel.app/gallery"
                     />
                   </Helmet>
                   <GalleryPage />
@@ -75,6 +76,7 @@ function App() {
               }
             />
           </Routes>
+          <Analytics /> {/* Added Analytics component */}
         </div>
       </Router>
     </HelmetProvider>
