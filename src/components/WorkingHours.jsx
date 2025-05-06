@@ -33,7 +33,7 @@ export default function WorkingHours() {
             <p className="text-lg text-center mb-8 text-gray-300 italic">
               We are open every day
             </p>
-            <span className="sr-only">Space Bowling Greece - Open daily 18:00 to 03:00</span>
+            <span className="sr-only">Space Bowling Greece - Open daily 18:00 to 01:00</span>
             <div className="space-y-4 flex-1">
               <ul className="space-y-4">
                 {[
@@ -55,7 +55,7 @@ export default function WorkingHours() {
                     className="flex justify-between items-center bg-gray-700 p-4 rounded-lg hover:bg-gray-600 transition-colors duration-200"
                   >
                     <span className="text-xl font-semibold text-white">{day}</span>
-                    <span className="text-lg text-gray-300 font-medium">18:00 - 03:00</span>
+                    <span className="text-lg text-gray-300 font-medium">18:00 - 01:00</span>
                   </motion.li>
                 ))}
               </ul>
