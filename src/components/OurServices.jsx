@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { useState } from "react";
 
 export default function OurServices() {
   const textVariants = {
@@ -30,6 +31,8 @@ export default function OurServices() {
       transition: { duration: 0.3 },
     },
   };
+  
+  const [flipped, setFlipped] = useState(false);
 
   return (
     <section
@@ -63,25 +66,50 @@ export default function OurServices() {
         </span>
       </div>
       <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 px-6 relative z-10">
-        {/* Service 1 - Fair Prices */}
+        {/* Service 1 - Fair Prices with flip */}
         <motion.div
-          className="service-item text-center bg-gray-900 p-8 rounded-lg shadow-lg border border-cyan-500/30 hover:border-cyan-500 transition-colors duration-300"
+          className="service-item relative [perspective:1000px] flex justify-center items-center min-h-[340px] md:min-h-[0]" // <-- Added flex centering and min height for mobile
+          onClick={() => setFlipped(!flipped)}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.5 }}
           variants={cardVariants}
           whileHover="hover"
         >
-          <div className="text-5xl mb-4 text-cyan-400 drop-shadow-[0_0_8px_rgba(0,255,255,0.5)]">
-            <i className="fas fa-tag" aria-label="Fair pricing icon"></i>
-          </div>
-          <h3 className="text-2xl font-semibold mb-2 text-white">
-            Fair Prices
-          </h3>
-          <p className="text-gray-300">
-            We offer competitive prices so you can enjoy bowling without
-            breaking the bank.
-          </p>
+          <motion.div
+            className="relative w-full h-full"
+            animate={{ rotateY: flipped ? 180 : 0 }}
+            transition={{ duration: 0.6 }}
+            style={{ transformStyle: "preserve-3d" }}
+          >
+            {/* Front */}
+            <div className="absolute inset-0 bg-gray-900 p-8 rounded-lg shadow-lg border border-cyan-500/30 hover:border-cyan-500 transition-colors duration-300 [backface-visibility:hidden] flex flex-col items-center justify-center text-center w-full h-full">
+              <div className="text-5xl mb-4 text-cyan-400 drop-shadow-[0_0_8px_rgba(0,255,255,0.5)]">
+                <i className="fas fa-tag" aria-label="Fair pricing icon"></i>
+              </div>
+              <h3 className="text-2xl font-semibold mb-2 text-white">
+                Fair Prices
+              </h3>
+              <p className="text-gray-300">
+                We offer competitive prices so you can enjoy bowling without
+                breaking the bank.
+              </p>
+              <p className="mt-4 text-sm text-cyan-300">Click to see prices</p>
+            </div>
+
+            {/* Back */}
+            <div className="absolute inset-0 bg-gray-900 p-8 rounded-lg shadow-lg border border-cyan-500/30 [transform:rotateY(180deg)] [backface-visibility:hidden] flex flex-col justify-center items-center text-center w-full h-full">
+              <h3 className="text-2xl font-semibold mb-4 text-cyan-300">
+                Price List
+              </h3>
+              <ul className="text-gray-300 space-y-2">
+                <li>🎳 Bowling Game: 5,5€ / player per game</li>
+                <li>🧦 Buy Socks: 1€ (Optional)</li>
+                <li>🎱 Billiard: 10€ / hour</li>
+              </ul>
+              <p className="mt-4 text-sm text-cyan-300">Click to flip back</p>
+            </div>
+          </motion.div>
         </motion.div>
         {/* Service 6 - Drinks & Cocktails */}
         <motion.div

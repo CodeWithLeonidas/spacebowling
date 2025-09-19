@@ -55,7 +55,7 @@ export default function WorkingHours() {
                     className="flex justify-between items-center bg-gray-700 p-4 rounded-lg hover:bg-gray-600 transition-colors duration-200"
                   >
                     <span className="text-xl font-semibold text-white">{day}</span>
-                    <span className="text-lg text-gray-300 font-medium">18:00 - 03:00</span>
+                    <span className="text-lg text-gray-300 font-medium">18:00 - 02:00</span>
                   </motion.li>
                 ))}
               </ul>
