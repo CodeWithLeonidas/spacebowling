@@ -36,7 +36,11 @@ export default function HeroSection() {
           minHeight: "110vh",
         }}
       />
-      <img src="/images/hero2.jpg" alt="Cosmic bowling lanes at Space Bowling" className="sr-only" />
+      <img
+        src="/images/hero2.jpg"
+        alt="Cosmic bowling lanes at Space Bowling"
+        className="sr-only"
+      />
 
       {/* Overlay */}
       <div className="absolute inset-0 bg-black/40" aria-hidden="true"></div>
@@ -48,11 +52,13 @@ export default function HeroSection() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
-          className="text-2xl sm:text-4xl lg:text-2xl drop-shadow-md mb-12 max-w-2xl mx-auto rock-salt cosmic-etch"
+          className="montserrat text-2xl sm:text-4xl lg:text-2xl drop-shadow-md mb-12 max-w-2xl mx-auto cosmic-etch"
         >
-          Blast off to a starry night of bowling bliss!
+          Open until Sunday, October 5th
         </motion.p>
-        <span className="sr-only">Space Bowling - Cosmic Bowling Experience</span>
+        <span className="sr-only">
+          Space Bowling - Cosmic Bowling Experience
+        </span>
 
         <motion.h1
           initial={{ opacity: 0, y: 20 }}

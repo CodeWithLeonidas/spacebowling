@@ -31,7 +31,7 @@ export default function WorkingHours() {
               Working Hours
             </h2>
             <p className="text-lg text-center mb-8 text-gray-300 italic">
-              We are open every day
+              We are open until Sunday, October 5th
             </p>
             <span className="sr-only">Space Bowling Greece - Open daily 18:00 to 03:00</span>
             <div className="space-y-4 flex-1">

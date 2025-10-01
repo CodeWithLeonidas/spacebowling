@@ -70,4 +70,9 @@
 
 .animate-spin-slow {
   animation: spin-slow 4s linear infinite;
+
+}
+/* Add to your CSS file */
+.rotate-y-180 {
+  transform: rotateY(180deg);
 }
