@@ -54,7 +54,7 @@ export default function HeroSection() {
           transition={{ duration: 0.8, delay: 0.4 }}
           className="montserrat text-2xl sm:text-4xl lg:text-2xl drop-shadow-md mb-12 max-w-2xl mx-auto cosmic-etch"
         >
-          Open until Sunday, October 5th
+          CLOSED UNTIL SUMMER 2026
         </motion.p>
         <span className="sr-only">
           Space Bowling - Cosmic Bowling Experience
