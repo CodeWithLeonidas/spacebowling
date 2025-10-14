@@ -3,6 +3,7 @@ import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import { Analytics } from '@vercel/analytics/react'
 import '@fortawesome/fontawesome-free/css/all.min.css'
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 export const metadata = {
   title: 'Space Bowling | Halkidiki',
