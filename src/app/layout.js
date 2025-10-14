@@ -12,7 +12,7 @@ export const metadata = {
     'bowling bar Halkidiki, bowling in Kalithea, Space Bowling Greece, nightlife in Halkidiki, fun activities in Kalithea, bowling and drinks, tourist attractions in Halkidiki',
   robots: 'index, follow',
   alternates: {
-    canonical: 'https://spacebowling.gr/',
+    canonical: 'https://www.spacebowling.gr/',
   },
 }
 
@@ -25,13 +25,13 @@ export default function RootLayout({ children }) {
         <meta name="robots" content="index, follow" />
         <meta property="og:title" content="Space Bowling | Halkidiki" />
         <meta property="og:description" content="Experience the ultimate bowling adventure at Space Bowling in Kalithea, Halkidiki. Enjoy cosmic vibes, top-tier lanes, delicious drinks, and unforgettable moments!" />
-        <meta property="og:url" content="https://spacebowling.gr/" />
+        <meta property="og:url" content="https://www.spacebowling.gr/" />
         <meta property="og:type" content="website" />
-        <meta property="og:image" content="https://spacebowling.gr/images/gallery.jpg" />
+        <meta property="og:image" content="https://www.spacebowling.gr/images/gallery.jpg" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Space Bowling | Halkidiki" />
         <meta name="twitter:description" content="Experience the ultimate bowling adventure at Space Bowling in Kalithea, Halkidiki." />
-        <meta name="twitter:image" content="https://spacebowling.gr/images/gallery.jpg" />
+        <meta name="twitter:image" content="https://www.spacebowling.gr/images/gallery.jpg" />
         <link rel="icon" href="/favicon.ico" />
         <meta name="theme-color" content="#1e293b" />
         <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />

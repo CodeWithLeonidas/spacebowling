@@ -8,7 +8,7 @@ import ContactForm from "./components/ContactForm.js";
 export const generateMetadata = () => ({
   title: "Space Bowling Greece | Cosmic Bowling in Halkidiki",
   description:
-    "Welcome to Space Bowling Greece! Enjoy cosmic bowling, drinks, and fun in Kalithea, Halkidiki. Discover our services, gallery, and contact us for unforgettable moments.",
+    "Welcome to Space Bowling! Enjoy cosmic bowling, drinks, and fun in Kalithea, Halkidiki. Explore our services, gallery, and contact us for unforgettable moments.",
   alternates: {
     canonical: "https://spacebowling.gr/",
   },
