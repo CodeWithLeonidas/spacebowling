@@ -2,21 +2,39 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
+import emailjs from "@emailjs/browser";
 
 const ContactForm = () => {
   const [formStatus, setFormStatus] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
   const [isPressed, setIsPressed] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    const form = e.target;
+    setIsLoading(true);
     setIsPressed(true);
 
-    // Simulate form submission
-    setTimeout(() => {
-      setFormStatus("success");
-      e.target.reset();
-      setIsPressed(false);
-    }, 800);
+    emailjs
+      .sendForm(
+        "spacebowling2025",
+        "template_n8t7g95",
+        form,
+        "cBkZDu2g-J9pScX_S"
+      )
+      .then(
+        () => {
+          setFormStatus("success");
+          form.reset();
+        },
+        () => {
+          setFormStatus("error");
+        }
+      )
+      .finally(() => {
+        setIsLoading(false);
+        setIsPressed(false);
+      });
   };
 
   const sectionVariants = {
@@ -72,11 +90,15 @@ const ContactForm = () => {
         variants={formVariants}
       >
         <div className="max-w-2xl mx-auto w-full bg-gray-800 p-8 rounded-xl shadow-2xl border border-cyan-500/30 hover:border-cyan-500 transition-colors duration-300">
-          <form onSubmit={handleSubmit} className="space-y-6" aria-label="Contact form">
+          <form
+            onSubmit={handleSubmit}
+            className="space-y-6"
+            aria-label="Contact form"
+          >
             {[
-              { id: "name", label: "Your Name", type: "text", placeholder: "John Doe", autoComplete: "name" },
-              { id: "email", label: "Your Email", type: "email", placeholder: "youremail@example.com", autoComplete: "email" },
-              { id: "message", label: "Your Message", type: "textarea", placeholder: "Write your message here...", autoComplete: "off" },
+              { id: "name", name: "user_name", label: "Your Name", type: "text", placeholder: "John Doe", autoComplete: "name" },
+              { id: "email", name: "email_from", label: "Your Email", type: "email", placeholder: "youremail@example.com", autoComplete: "email" },
+              { id: "message", name: "message", label: "Your Message", type: "textarea", placeholder: "Write your message here...", autoComplete: "off" },
             ].map((field, index) => (
               <motion.div
                 key={field.id}
@@ -93,6 +115,7 @@ const ContactForm = () => {
                 {field.type === "textarea" ? (
                   <textarea
                     id={field.id}
+                    name={field.name}
                     className="p-4 rounded-lg bg-gray-700 text-white border border-gray-600 focus:outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500 transition h-40 resize-y"
                     placeholder={field.placeholder}
                     required
@@ -103,6 +126,7 @@ const ContactForm = () => {
                   <input
                     type={field.type}
                     id={field.id}
+                    name={field.name}
                     className="p-4 rounded-lg bg-gray-700 text-white border border-gray-600 focus:outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500 transition"
                     placeholder={field.placeholder}
                     required
@@ -124,7 +148,9 @@ const ContactForm = () => {
                 role="status"
                 aria-live="polite"
               >
-                Message sent successfully
+                {formStatus === "success"
+                  ? "Your message has been sent successfully!"
+                  : "Oops! Something went wrong, please try again."}
               </motion.div>
             )}
 
@@ -133,16 +159,43 @@ const ContactForm = () => {
               className="relative w-full bg-gradient-to-b from-gray-800 to-gray-900 text-cyan-300 rounded-md font-semibold text-lg shadow-lg border border-cyan-300/40 overflow-hidden"
               variants={buttonVariants}
               initial="idle"
-              animate={isPressed ? "pressed" : "idle"}
+              animate={isLoading || isPressed ? "pressed" : "idle"}
+              disabled={isLoading}
               aria-label="Send message"
               title="Send message to Space Bowling Greece"
             >
               <span className="relative z-10 flex items-center justify-center w-full py-3 px-6">
-                Send Message
+                {isLoading ? (
+                  <>
+                    <svg
+                      className="animate-spin h-5 w-5 mr-2 text-cyan-300"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                    >
+                      <circle
+                        className="opacity-25"
+                        cx="12"
+                        cy="12"
+                        r="10"
+                        stroke="currentColor"
+                        strokeWidth="4"
+                      />
+                      <path
+                        className="opacity-75"
+                        fill="currentColor"
+                        d="M4 12a8 8 0 018-8v8h8a8 8 0 01-16 0z"
+                      />
+                    </svg>
+                    Sending...
+                  </>
+                ) : (
+                  "Send Message"
+                )}
               </span>
               <span
                 className={`absolute inset-0 bg-cyan-300/30 rounded-md transition-all duration-600 ${
-                  isPressed ? "opacity-100 scale-150" : "opacity-0 scale-0"
+                  isPressed || isLoading ? "opacity-100 scale-150" : "opacity-0 scale-0"
                 }`}
               />
             </motion.button>

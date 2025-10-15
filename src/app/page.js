@@ -10,16 +10,16 @@ export const generateMetadata = () => ({
   description:
     "Welcome to Space Bowling! Enjoy cosmic bowling, drinks, and fun in Kalithea, Halkidiki. Explore our services, gallery, and contact us for unforgettable moments.",
   alternates: {
-    canonical: "https://spacebowling.gr/",
+    canonical: "https://www.spacebowling.gr/",
   },
   openGraph: {
     title: "Space Bowling Greece | Cosmic Bowling in Halkidiki",
     description:
       "Welcome to Space Bowling Greece! Enjoy cosmic bowling, drinks, and fun in Kalithea, Halkidiki.",
-    url: "https://spacebowling.gr/",
+    url: "https://www.spacebowling.gr/",
     images: [
       {
-        url: "https://spacebowling.gr/images/gallery.jpg",
+        url: "https://www.spacebowling.gr/images/gallery.jpg",
         width: 800,
         height: 600,
         alt: "Space Bowling Greece cosmic bowling",
@@ -32,7 +32,7 @@ export const generateMetadata = () => ({
     title: "Space Bowling Greece | Cosmic Bowling in Halkidiki",
     description:
       "Welcome to Space Bowling Greece! Enjoy cosmic bowling, drinks, and fun in Kalithea, Halkidiki.",
-    images: ["https://spacebowling.gr/images/gallery.jpg"],
+    images: ["https://www.spacebowling.gr/images/gallery.jpg"],
   },
 });
 
