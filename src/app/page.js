@@ -1,50 +1,36 @@
-import HeroSection from "./components/HeroSection";
-import AboutUs from "./components/AboutUs";
-import OurServices from "./components/OurServices";
-import WorkingHours from "./components/WorkingHours";
-import GalleryPreview from "./components/GalleryPreview";
-import ContactForm from "./components/ContactForm.js";
+import HomeClient from "./HomeClient";
 
 export const generateMetadata = () => ({
-  title: "Space Bowling Greece | Cosmic Bowling in Halkidiki",
+  title: "Space Bowling Greece | Neon Bowling in Halkidiki",
   description:
-    "Welcome to Space Bowling! Enjoy cosmic bowling, drinks, and fun in Kalithea, Halkidiki. Explore our services, gallery, and contact us for unforgettable moments.",
+    "Welcome to Space Bowling! Enjoy neon-lit bowling, drinks, and fun in Kalithea, Halkidiki. Explore our services, gallery, and contact us for unforgettable moments.",
   alternates: {
     canonical: "https://www.spacebowling.gr/",
   },
   openGraph: {
-    title: "Space Bowling Greece | Cosmic Bowling in Halkidiki",
+    title: "Space Bowling Greece | Neon Bowling in Halkidiki",
     description:
-      "Welcome to Space Bowling Greece! Enjoy cosmic bowling, drinks, and fun in Kalithea, Halkidiki.",
+      "Welcome to Space Bowling Greece! Enjoy neon-lit bowling, drinks, and fun in Kalithea, Halkidiki.",
     url: "https://www.spacebowling.gr/",
     images: [
       {
         url: "https://www.spacebowling.gr/images/gallery.jpg",
         width: 800,
         height: 600,
-        alt: "Space Bowling Greece cosmic bowling",
+        alt: "Space Bowling Greece neon bowling lanes in Halkidiki",
       },
     ],
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Space Bowling Greece | Cosmic Bowling in Halkidiki",
+    title: "Space Bowling Greece | Neon Bowling in Halkidiki",
     description:
-      "Welcome to Space Bowling Greece! Enjoy cosmic bowling, drinks, and fun in Kalithea, Halkidiki.",
+      "Welcome to Space Bowling Greece! Enjoy neon-lit bowling, drinks, and fun in Kalithea, Halkidiki.",
     images: ["https://www.spacebowling.gr/images/gallery.jpg"],
   },
 });
 
 export default function HomePage() {
-  return (
-    <main>
-      <HeroSection />
-      <AboutUs />
-      <OurServices />
-      <WorkingHours />
-      <GalleryPreview />
-      <ContactForm />
-    </main>
-  );
+  return <HomeClient />;
 }

@@ -1,147 +1,134 @@
-/* eslint-disable @next/next/no-img-element */
 'use client'
 
-import { motion } from 'framer-motion'
-import { useState } from 'react'
+import { useEffect, useRef } from 'react'
+
+const stats = [
+  { value: '6',   label: 'BOWLING LANES' },
+  { value: '10+', label: 'YEARS OF FUN' },
+  { value: '1',   label: 'BILLIARD TABLE' },
+  { value: '∞',   label: 'GOOD TIMES' },
+]
 
 export default function AboutUs() {
-  const fadeInUp = {
-    hidden: { opacity: 0, y: 50 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.8, ease: 'easeOut' },
-    },
-  }
+  const sectionRef = useRef(null)
 
-  const imagePop = {
-    hidden: { opacity: 0, scale: 0.85 },
-    visible: {
-      opacity: 1,
-      scale: 1,
-      transition: { duration: 0.9, ease: 'easeOut', delay: 0.2 },
-    },
-  }
-
-  const spanGrow = {
-    hidden: { height: 0, opacity: 0 },
-    visible: {
-      height: '24rem',
-      opacity: 1,
-      transition: { duration: 1, ease: 'easeInOut', delay: 0.4 },
-    },
-  }
-
-  const textFade = {
-    hidden: { opacity: 0, y: 60 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.8, ease: 'easeOut', delay: 0.5 },
-    },
-  }
-
-  const buttonVariants = {
-    idle: { scale: 1 },
-    pressed: { scale: 0.95 },
-  }
-
-  const [isPressed, setIsPressed] = useState(false)
-
-  const handleButtonClick = () => {
-    setIsPressed(true)
-    setTimeout(() => {
-      // Button action left blank for now
-      setIsPressed(false)
-    }, 400)
-  }
+  useEffect(() => {
+    const el = sectionRef.current
+    if (!el) return
+    const targets = el.querySelectorAll('.reveal, .reveal-left, .reveal-right')
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) { entry.target.classList.add('is-visible'); observer.unobserve(entry.target) }
+        })
+      },
+      { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
+    )
+    targets.forEach((t) => observer.observe(t))
+    return () => observer.disconnect()
+  }, [])
 
   return (
     <section
       id="about"
-      className="py-16 bg-gradient-to-b from-gray-900 to-gray-800 text-white relative overflow-hidden"
+      ref={sectionRef}
+      className="relative py-28 overflow-hidden"
+      style={{ background: 'var(--bg-deep)' }}
       aria-label="About Space Bowling Greece"
     >
-      <div className="container mx-auto text-center mb-12 relative z-10">
-        <motion.h2
-          className="text-5xl font-bold mb-6 text-cyan-300 drop-shadow-md"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.3 }}
-          variants={fadeInUp}
-        >
-          About Us
-        </motion.h2>
-      </div>
+      <div className="absolute top-0 left-0 w-full h-px section-divider pointer-events-none" aria-hidden="true" />
+      <div className="absolute bottom-0 left-0 w-full h-px section-divider pointer-events-none" aria-hidden="true" />
+      <div className="absolute left-1/2 top-0 -translate-x-1/2 w-[600px] h-[600px] rounded-full bg-[var(--violet)]/[0.04] blur-[120px] pointer-events-none" aria-hidden="true" />
+      <div className="absolute grid-bg inset-0 opacity-30 pointer-events-none" aria-hidden="true" />
 
-      <div className="container mx-auto flex flex-col lg:flex-row items-center gap-12 px-6 relative z-10">
-        <motion.div
-          className="lg:w-1/2 flex-1 h-full p-6 flex items-center"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.3 }}
-          variants={imagePop}
-        >
-          <img
-            src="/images/about.png"
-            alt="Space Bowling cosmic bowling experience in Greece"
-            className="rounded-lg shadow-lg w-full h-full object-cover"
-          />
-        </motion.div>
+      <div className="container mx-auto px-6 relative z-10">
 
-        <motion.div
-          className="hidden lg:block w-px bg-cyan-400/50 mx-6 drop-shadow-[0_0_8px_rgba(0,255,255,0.5)]"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.3 }}
-          variants={spanGrow}
-        />
-
-        <motion.div
-          className="lg:w-1/2 flex-1 h-full p-6 flex flex-col justify-center items-center text-center"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.3 }}
-          variants={textFade}
-        >
-          <h3 className="text-3xl font-semibold text-cyan-300 mb-4">
-            Experience Bowling Like Never Before
-          </h3>
-          <p className="text-lg text-gray-200 leading-relaxed max-w-lg text-justify">
-            Welcome to Space Bowling, where the thrill of bowling meets the
-            excitement of outer space! Nestled in the heart of Greece’s stunning
-            tourist district, we invite you to step into a cosmic adventure like
-            no other. Our unique atmosphere combines state-of-the-art bowling
-            lanes with captivating space-inspired décor, creating an immersive
-            experience for all ages. Whether you are here for a friendly game or
-            to enjoy a drink under the stars, we promise an unforgettable
-            journey through the galaxy. So grab your spacesuit and let the good
-            times roll!
-          </p>
-
-          <span className="sr-only">
-            Space Bowling Greece - tourist district in Kalithea Halkidiki for all
-            ages, we provide drinks and fun
+        {/* Header */}
+        <div className="mb-20 text-center">
+          <span className="reveal font-mono-space text-sm tracking-[0.4em] text-[var(--cyan)]/60 uppercase block mb-4" style={{ fontFamily: 'var(--font-mono)' }}>
+            // 01 — WHO WE ARE
           </span>
+          <h2 className="reveal reveal-d1 font-orbitron text-4xl sm:text-5xl font-black gradient-text" style={{ fontFamily: 'var(--font-display)' }}>
+            ABOUT US
+          </h2>
+        </div>
 
-          <motion.button
-            className="relative inline-block px-8 py-3 bg-gradient-to-b from-gray-800 to-gray-900 text-cyan-300 rounded-md font-semibold text-lg shadow-lg border border-cyan-300/40 overflow-hidden mt-10 hover:brightness-110 transition duration-300 cursor-pointer"
-            variants={buttonVariants}
-            initial="idle"
-            animate={isPressed ? 'pressed' : 'idle'}
-            onClick={handleButtonClick}
-            title="Chat with Space Bowling Team"
-            aria-label="Chat with Space Bowling Team"
-          >
-            <span className="relative z-10">Chat with Us!</span>
-            <span
-              className={`absolute inset-0 bg-cyan-300/30 rounded-md transition-all duration-600 ${
-                isPressed ? 'opacity-100 scale-150' : 'opacity-0 scale-0'
-              }`}
-            />
-          </motion.button>
-        </motion.div>
+        {/* Main layout */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-20">
+
+          {/* Image */}
+          <div className="reveal-left relative">
+            <div className="relative rounded-2xl overflow-hidden border border-[var(--border-cyan)] shadow-[0_0_60px_rgba(0,245,255,0.08)]">
+              <img
+                src="/images/about.png"
+                alt="Space Bowling neon bowling experience in Halkidiki, Greece"
+                className="w-full h-[480px] object-cover"
+                loading="lazy"
+              />
+              <div className="absolute inset-0 scanlines pointer-events-none" aria-hidden="true" />
+              <div className="absolute top-4 left-4 w-8 h-8 border-t-2 border-l-2 border-[var(--cyan)]" aria-hidden="true" />
+              <div className="absolute bottom-4 right-4 w-8 h-8 border-b-2 border-r-2 border-[var(--magenta)]" aria-hidden="true" />
+            </div>
+          </div>
+
+          {/* Text */}
+          <div className="reveal-right flex flex-col gap-8">
+            <h3
+              className="font-orbitron text-3xl sm:text-4xl font-bold leading-snug"
+              style={{ fontFamily: 'var(--font-display)' }}
+            >
+              EXPERIENCE BOWLING{' '}
+              <span className="gradient-text">LIKE NEVER BEFORE</span>
+            </h3>
+            <p className="text-white/65 text-xl leading-relaxed" style={{ fontFamily: 'var(--font-body)' }}>
+              Welcome to Space Bowling where the thrill of the lanes meets the
+              excitement of outer space. Nestled in Greece's stunning tourist district
+              of Kalithea, Halkidiki, we invite you to step into an adventure like no other.
+            </p>
+            <p className="text-white/50 text-lg leading-relaxed" style={{ fontFamily: 'var(--font-body)' }}>
+              Our unique atmosphere blends state of the art bowling lanes with
+              captivating space inspired decor creating an immersive experience for
+              all ages. Whether you're here for a friendly game, sipping signature
+              cocktails, or looking for the best nightlife in Halkidiki, we promise an
+              unforgettable night.
+            </p>
+            <a
+              href="/#contact"
+              className="btn-neon self-start mt-2"
+              aria-label="Get in touch with Space Bowling"
+            >
+              <span>GET IN TOUCH</span>
+            </a>
+          </div>
+        </div>
+
+        {/* Stats no hover effects, purely decorative display cards */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          {stats.map((s, i) => (
+            <div
+              key={s.label}
+              className={`reveal reveal-d${i + 1} bg-[var(--bg-card)] border border-[var(--border-cyan)] rounded-2xl p-6 text-center`}
+            >
+              <div
+                className="font-orbitron text-4xl font-black gradient-text mb-2"
+                style={{ fontFamily: 'var(--font-display)' }}
+              >
+                {s.value}
+              </div>
+              <div
+                className="font-mono-space text-xs tracking-[0.25em] text-white/40 uppercase"
+                style={{ fontFamily: 'var(--font-mono)' }}
+              >
+                {s.label}
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
+
+      <span className="sr-only">
+        Space Bowling Greece tourist attraction in Kalithea Halkidiki, bowling and entertainment for all ages.
+      </span>
     </section>
   )
 }

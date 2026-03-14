@@ -1,209 +1,252 @@
 'use client'
 
-import { useState } from "react";
-import { motion } from "framer-motion";
-import emailjs from "@emailjs/browser";
+import { useState, useEffect, useRef } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
+import emailjs from '@emailjs/browser'
+import { FaFacebook, FaInstagram } from 'react-icons/fa'
 
-const ContactForm = () => {
-  const [formStatus, setFormStatus] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
-  const [isPressed, setIsPressed] = useState(false);
+const fields = [
+  { id: 'name', name: 'user_name', label: 'YOUR NAME', type: 'text', placeholder: 'John Doe', autoComplete: 'name' },
+  { id: 'email', name: 'email_from', label: 'YOUR EMAIL', type: 'email', placeholder: 'youremail@example.com', autoComplete: 'email' },
+  { id: 'message', name: 'message', label: 'YOUR MESSAGE', type: 'textarea', placeholder: 'Write your message here...', autoComplete: 'off' },
+]
+
+const contactInfo = [
+  { icon: '📞', label: 'PHONE', value: '+30 697 203 3463', href: 'tel:+306972033463' },
+  { icon: '📞', label: 'PHONE', value: '+30 697 965 8337', href: 'tel:+306979658337' },
+  { icon: '✉️', label: 'EMAIL', value: 'spacebowling@outlook.com', href: 'mailto:spacebowling@outlook.com' },
+  { icon: '📍', label: 'ADDRESS', value: 'Kalithea, Halkidiki, GR', href: null },
+]
+
+/* ── Submit button — spinner perfectly inline with text ──────── */
+function SubmitButton({ isLoading }) {
+  return (
+    <motion.button
+      type="submit"
+      disabled={isLoading}
+      whileHover={!isLoading ? { scale: 1.02 } : {}}
+      whileTap={!isLoading ? { scale: 0.93 } : {}}
+      className="btn-neon w-full disabled:opacity-50 disabled:cursor-not-allowed"
+      aria-label="Send message"
+      style={{ display: 'block' }}
+    >
+      {/* Single span keeps btn-neon's z-index layer intact while
+          centering the flex content properly */}
+      <span
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          gap: '0.6rem',
+          lineHeight: 1,
+        }}
+      >
+        {isLoading && (
+          <motion.span
+            animate={{ rotate: 360 }}
+            transition={{ duration: 1, repeat: Infinity, ease: 'linear' }}
+            style={{
+              display: 'inline-block',
+              width: '1.1em',
+              height: '1.1em',
+              border: '2px solid currentColor',
+              borderTopColor: 'transparent',
+              borderRadius: '50%',
+              flexShrink: 0,
+            }}
+            aria-hidden="true"
+          />
+        )}
+        <span>{isLoading ? 'TRANSMITTING...' : 'SEND MESSAGE'}</span>
+      </span>
+    </motion.button>
+  )
+}
+
+export default function ContactForm() {
+  const [formStatus, setFormStatus] = useState(null)
+  const [isLoading, setIsLoading] = useState(false)
+  const sectionRef = useRef(null)
+
+  useEffect(() => {
+    const el = sectionRef.current
+    if (!el) return
+    const targets = el.querySelectorAll('.reveal, .reveal-left, .reveal-right')
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) { entry.target.classList.add('is-visible'); observer.unobserve(entry.target) }
+        })
+      },
+      { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
+    )
+    targets.forEach((t) => observer.observe(t))
+    return () => observer.disconnect()
+  }, [])
 
   const handleSubmit = (e) => {
-    e.preventDefault();
-    const form = e.target;
-    setIsLoading(true);
-    setIsPressed(true);
-
-    emailjs
-      .sendForm(
-        "spacebowling2025",
-        "template_n8t7g95",
-        form,
-        "cBkZDu2g-J9pScX_S"
-      )
-      .then(
-        () => {
-          setFormStatus("success");
-          form.reset();
-        },
-        () => {
-          setFormStatus("error");
-        }
-      )
-      .finally(() => {
-        setIsLoading(false);
-        setIsPressed(false);
-      });
-  };
-
-  const sectionVariants = {
-    hidden: { opacity: 0 },
-    visible: { opacity: 1, transition: { duration: 0.6, ease: "easeOut" } },
-  };
-
-  const formVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.6, delay: 0.2, ease: "easeOut" } },
-  };
-
-  const inputVariants = {
-    hidden: { opacity: 0, x: -20 },
-    visible: (i) => ({ opacity: 1, x: 0, transition: { delay: i * 0.1, duration: 0.4, ease: "easeOut" } }),
-  };
-
-  const statusVariants = {
-    hidden: { opacity: 0, scale: 0.8 },
-    visible: { opacity: 1, scale: 1, transition: { duration: 0.3 } },
-  };
-
-  const buttonVariants = {
-    idle: { scale: 1 },
-    pressed: { scale: 0.95 },
-  };
+    e.preventDefault()
+    const form = e.target
+    setIsLoading(true)
+    setFormStatus(null)
+    emailjs.sendForm('spacebowling2025', 'template_n8t7g95', form, 'cBkZDu2g-J9pScX_S')
+      .then(() => { setFormStatus('success'); form.reset() })
+      .catch(() => setFormStatus('error'))
+      .finally(() => setIsLoading(false))
+  }
 
   return (
-    <section id="contact" className="py-16 bg-gray-900 text-white" aria-label="Contact Space Bowling Greece">
-      <motion.div
-        className="container mx-auto text-center mb-12 px-6"
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.5 }}
-        variants={sectionVariants}
-      >
-        <h2 className="text-4xl md:text-5xl font-bold mb-6 text-cyan-300 drop-shadow-md">
-          Contact Us
-        </h2>
-        <p className="text-lg md:text-xl text-gray-400 mb-8 italic">
-          Have any questions? We would love to hear from you!
-        </p>
-        <span className="sr-only">
-          Space Bowling Greece contact form for questions, booking, and feedback. Bowling bar in Halkidiki, Kalithea.
-        </span>
-      </motion.div>
+    <section
+      id="contact"
+      ref={sectionRef}
+      className="relative py-28 overflow-hidden"
+      style={{ background: 'var(--bg-deep)' }}
+      aria-label="Contact Space Bowling Greece"
+    >
+      {/* BG layers — all pointer-events-none */}
+      <div className="absolute top-0 left-0 w-full h-px section-divider pointer-events-none" aria-hidden="true" />
+      <div className="absolute left-0 bottom-1/3 w-[400px] h-[400px] rounded-full bg-[var(--cyan)]/[0.04] blur-[100px] pointer-events-none" aria-hidden="true" />
+      <div className="absolute right-0 top-1/3 w-[300px] h-[300px] rounded-full bg-[var(--magenta)]/[0.03] blur-[80px] pointer-events-none" aria-hidden="true" />
+      <div className="absolute inset-0 grid-bg opacity-25 pointer-events-none" aria-hidden="true" />
 
-      <motion.div
-        className="container mx-auto px-6"
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.3 }}
-        variants={formVariants}
-      >
-        <div className="max-w-2xl mx-auto w-full bg-gray-800 p-8 rounded-xl shadow-2xl border border-cyan-500/30 hover:border-cyan-500 transition-colors duration-300">
-          <form
-            onSubmit={handleSubmit}
-            className="space-y-6"
-            aria-label="Contact form"
-          >
-            {[
-              { id: "name", name: "user_name", label: "Your Name", type: "text", placeholder: "John Doe", autoComplete: "name" },
-              { id: "email", name: "email_from", label: "Your Email", type: "email", placeholder: "youremail@example.com", autoComplete: "email" },
-              { id: "message", name: "message", label: "Your Message", type: "textarea", placeholder: "Write your message here...", autoComplete: "off" },
-            ].map((field, index) => (
-              <motion.div
-                key={field.id}
-                custom={index}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, amount: 0.5 }}
-                variants={inputVariants}
-                className="flex flex-col"
-              >
-                <label htmlFor={field.id} className="text-lg font-medium text-gray-300 mb-2">
-                  {field.label}
-                </label>
-                {field.type === "textarea" ? (
-                  <textarea
-                    id={field.id}
-                    name={field.name}
-                    className="p-4 rounded-lg bg-gray-700 text-white border border-gray-600 focus:outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500 transition h-40 resize-y"
-                    placeholder={field.placeholder}
-                    required
-                    aria-label={field.label}
-                    autoComplete={field.autoComplete}
-                  />
-                ) : (
-                  <input
-                    type={field.type}
-                    id={field.id}
-                    name={field.name}
-                    className="p-4 rounded-lg bg-gray-700 text-white border border-gray-600 focus:outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500 transition"
-                    placeholder={field.placeholder}
-                    required
-                    aria-label={field.label}
-                    autoComplete={field.autoComplete}
-                  />
-                )}
-              </motion.div>
+      <div className="container mx-auto px-6 relative" style={{ zIndex: 10 }}>
+
+        {/* Header */}
+        <div className="mb-16 text-center">
+          <span className="reveal font-mono-space text-sm tracking-[0.4em] text-[var(--cyan)]/60 uppercase block mb-4" style={{ fontFamily: 'var(--font-mono)' }}>
+            // 05 — REACH OUT
+          </span>
+          <h2 className="reveal reveal-d1 font-orbitron text-4xl sm:text-5xl font-black gradient-text mb-6" style={{ fontFamily: 'var(--font-display)' }}>
+            CONTACT US
+          </h2>
+          <p className="reveal reveal-d2 text-white/55 text-xl italic max-w-xl mx-auto" style={{ fontFamily: 'var(--font-body)' }}>
+            Have questions or want to plan your visit? We'd love to hear from you.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 max-w-6xl mx-auto">
+
+          {/* Sidebar */}
+          <div className="reveal-left lg:col-span-2 flex flex-col gap-4">
+
+            {contactInfo.map(({ icon, label, value, href }, i) => (
+              <div key={i} className={`reveal reveal-d${i + 1} neon-card p-5 flex items-start gap-4`}>
+                <span className="text-2xl flex-shrink-0 mt-0.5">{icon}</span>
+                <div className="flex-1">
+                  <div className="font-mono-space text-xs tracking-[0.3em] text-[var(--cyan)] mb-1.5">{label}</div>
+                  {href ? (
+                    <span className="text-white/80 hover:text-white transition-colors duration-300 text-base font-medium" style={{ fontFamily: 'var(--font-body)' }}>
+                      {value}
+                    </span>
+                  ) : (
+                    <span className="text-white/80 hover:text-white transition-colors duration-300 text-base font-medium" style={{ fontFamily: 'var(--font-body)' }}>
+                      {value}
+                    </span>
+                  )}
+                </div>
+              </div>
             ))}
 
-            {formStatus && (
-              <motion.div
-                initial="hidden"
-                animate="visible"
-                variants={statusVariants}
-                className={`text-center py-2 px-4 rounded-lg mt-4 ${
-                  formStatus === "success" ? "bg-green-600" : "bg-red-600"
-                } text-white font-medium`}
-                role="status"
-                aria-live="polite"
-              >
-                {formStatus === "success"
-                  ? "Your message has been sent successfully!"
-                  : "Oops! Something went wrong, please try again."}
-              </motion.div>
-            )}
+            {/* Follow Us — side by side, fully clickable */}
+            <div className="reveal reveal-d5 neon-card p-5" style={{ position: 'relative', zIndex: 20 }}>
+              <div className="font-mono-space text-xs tracking-[0.3em] text-[var(--cyan)] mb-4" style={{ fontFamily: 'var(--font-mono)' }}>
+                FOLLOW US
+              </div>
+              <div className="flex flex-row gap-3" style={{ position: 'relative', zIndex: 20 }}>
+                <a
+                  href="https://www.facebook.com/SpaceBowlingCentre"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Space Bowling on Facebook"
+                  className="group flex-1 flex items-center justify-center gap-2 px-3 py-3 rounded-lg border border-white/[0.08] hover:border-[#1877F2]/50 hover:bg-[#1877F2]/[0.07] transition-all duration-300"
+                  style={{ zIndex: 20, position: 'relative', textDecoration: 'none' }}
+                >
+                  <FaFacebook size={17} className="text-white/45 group-hover:text-[#1877F2] transition-colors duration-300 flex-shrink-0" />
+                  <span className="font-mono-space text-xs tracking-[0.1em] text-white/45 group-hover:text-white transition-colors duration-300" style={{ fontFamily: 'var(--font-mono)' }}>
+                    FACEBOOK
+                  </span>
+                </a>
+                <a
+                  href="https://www.instagram.com/spacebowling/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Space Bowling on Instagram"
+                  className="group flex-1 flex items-center justify-center gap-2 px-3 py-3 rounded-lg border border-white/[0.08] hover:border-[#E1306C]/50 hover:bg-[#E1306C]/[0.07] transition-all duration-300"
+                  style={{ zIndex: 20, position: 'relative', textDecoration: 'none' }}
+                >
+                  <FaInstagram size={17} className="text-white/45 group-hover:text-[#E1306C] transition-colors duration-300 flex-shrink-0" />
+                  <span className="font-mono-space text-xs tracking-[0.1em] text-white/45 group-hover:text-white transition-colors duration-300" style={{ fontFamily: 'var(--font-mono)' }}>
+                    INSTAGRAM
+                  </span>
+                </a>
+              </div>
+            </div>
+          </div>
 
-            <motion.button
-              type="submit"
-              className="relative w-full bg-gradient-to-b from-gray-800 to-gray-900 text-cyan-300 rounded-md font-semibold text-lg shadow-lg border border-cyan-300/40 overflow-hidden"
-              variants={buttonVariants}
-              initial="idle"
-              animate={isLoading || isPressed ? "pressed" : "idle"}
-              disabled={isLoading}
-              aria-label="Send message"
-              title="Send message to Space Bowling Greece"
-            >
-              <span className="relative z-10 flex items-center justify-center w-full py-3 px-6">
-                {isLoading ? (
-                  <>
-                    <svg
-                      className="animate-spin h-5 w-5 mr-2 text-cyan-300"
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                    >
-                      <circle
-                        className="opacity-25"
-                        cx="12"
-                        cy="12"
-                        r="10"
-                        stroke="currentColor"
-                        strokeWidth="4"
-                      />
-                      <path
-                        className="opacity-75"
-                        fill="currentColor"
-                        d="M4 12a8 8 0 018-8v8h8a8 8 0 01-16 0z"
-                      />
-                    </svg>
-                    Sending...
-                  </>
-                ) : (
-                  "Send Message"
-                )}
+          {/* Form */}
+          <div className="reveal-right lg:col-span-3 neon-card p-8" style={{ position: 'relative', zIndex: 10 }}>
+            <div className="flex items-center gap-3 mb-8">
+              <div className="flex gap-1.5" aria-hidden="true">
+                <span className="w-3 h-3 rounded-full bg-[var(--magenta)]/60" />
+                <span className="w-3 h-3 rounded-full bg-[var(--cyan)]/60" />
+                <span className="w-3 h-3 rounded-full bg-[var(--violet)]/60" />
+              </div>
+              <span className="font-mono-space text-xs tracking-[0.3em] text-white/30" style={{ fontFamily: 'var(--font-mono)' }}>
+                SEND_MESSAGE.EXE
               </span>
-              <span
-                className={`absolute inset-0 bg-cyan-300/30 rounded-md transition-all duration-600 ${
-                  isPressed || isLoading ? "opacity-100 scale-150" : "opacity-0 scale-0"
-                }`}
-              />
-            </motion.button>
-          </form>
-        </div>
-      </motion.div>
-    </section>
-  );
-};
+            </div>
 
-export default ContactForm;
+            <form onSubmit={handleSubmit} className="space-y-6" aria-label="Contact form" noValidate>
+              {fields.map((field) => (
+                <div key={field.id} className="flex flex-col gap-2" style={{ position: 'relative', zIndex: 10 }}>
+                  <label htmlFor={field.id} className="font-mono-space text-xs tracking-[0.3em] text-[var(--cyan)]/80 cursor-pointer" style={{ fontFamily: 'var(--font-mono)' }}>
+                    {field.label}
+                  </label>
+                  {field.type === 'textarea' ? (
+                    <textarea
+                      id={field.id} name={field.name} placeholder={field.placeholder}
+                      required autoComplete={field.autoComplete} aria-label={field.label} rows={5}
+                      className="w-full px-4 py-3.5 rounded-lg bg-[#030510] border border-white/[0.08] text-white text-base placeholder-white/25 resize-y focus:border-[var(--cyan)] focus:outline-none"
+                      style={{ fontFamily: 'var(--font-body)', position: 'relative', zIndex: 10 }}
+                    />
+                  ) : (
+                    <input
+                      type={field.type} id={field.id} name={field.name} placeholder={field.placeholder}
+                      required autoComplete={field.autoComplete} aria-label={field.label}
+                      className="w-full px-4 py-3.5 rounded-lg bg-[#030510] border border-white/[0.08] text-white text-base placeholder-white/25 focus:border-[var(--cyan)] focus:outline-none"
+                      style={{ fontFamily: 'var(--font-body)', position: 'relative', zIndex: 10 }}
+                    />
+                  )}
+                </div>
+              ))}
+
+              <AnimatePresence>
+                {formStatus && (
+                  <motion.div
+                    initial={{ opacity: 0, y: -8 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0 }}
+                    className={`px-5 py-4 rounded-lg border text-base font-semibold ${formStatus === 'success'
+                        ? 'border-[var(--cyan)]/30 bg-[var(--cyan)]/[0.07] text-[var(--cyan)]'
+                        : 'border-[var(--magenta)]/30 bg-[var(--magenta)]/[0.07] text-[var(--magenta)]'
+                      }`}
+                    style={{ fontFamily: 'var(--font-mono)', letterSpacing: '0.08em', position: 'relative', zIndex: 10 }}
+                    role="status" aria-live="polite"
+                  >
+                    {formStatus === 'success' ? "✓  MESSAGE SENT — WE'LL BE IN TOUCH SOON" : '✕  SOMETHING WENT WRONG — PLEASE TRY AGAIN'}
+                  </motion.div>
+                )}
+              </AnimatePresence>
+
+              <SubmitButton isLoading={isLoading} />
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <span className="sr-only">
+        Space Bowling Greece contact — Phone: +30 697 203 3463. Email: spacebowling@outlook.com.
+      </span>
+    </section>
+  )
+}

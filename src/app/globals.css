@@ -1,59 +1,384 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap');
 @import "tailwindcss";
 
-/* CSS Variables for consistent dark theme */
+/* ─── CSS Variables ─────────────────────────────────────────── */
 :root {
-  --background: #0a0a0a;
-  --foreground: #ffffff;
-  --primary: #00ffff; /* cyan accent */
-  --secondary: #8b5cf6; /* purple accent */
-  --accent-glow: rgba(0, 255, 255, 0.25);
+  --bg-void:      #030510;
+  --bg-deep:      #060d1f;
+  --bg-card:      #0a1628;
+  --bg-card-hover:#0d1e38;
+
+  --cyan:         #00f5ff;
+  --cyan-dim:     #00c8d4;
+  --magenta:      #ff00aa;
+  --violet:       #7b2fff;
+  --gold:         #ffd700;
+
+  --cyan-glow:    0 0 20px rgba(0,245,255,0.5), 0 0 60px rgba(0,245,255,0.15);
+  --magenta-glow: 0 0 20px rgba(255,0,170,0.5), 0 0 60px rgba(255,0,170,0.15);
+  --violet-glow:  0 0 20px rgba(123,47,255,0.5), 0 0 60px rgba(123,47,255,0.15);
+
+  --border-cyan:  rgba(0,245,255,0.25);
+  --border-mag:   rgba(255,0,170,0.25);
+
+  --font-display: 'Orbitron', monospace;
+  --font-body:    'Rajdhani', sans-serif;
+  --font-mono:    'Space Mono', monospace;
+
+  --transition:   all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Body and typography */
+/* ─── Base ──────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; font-size: 17px; }
+
 body {
-  font-family: Arial, Helvetica, sans-serif;
-  background-color: var(--background);
-  color: var(--foreground);
-  scroll-behavior: smooth; /* Smooth scrolling for anchor links */
+  font-family: var(--font-body);
+  background-color: var(--bg-void);
+  color: #e2e8f0;
   overflow-x: hidden;
+  cursor: default;
+  font-size: 1.05rem;
+  line-height: 1.7;
 }
 
-/* Smooth motion for Framer Motion animations */
-motion-div,
-motion-section,
-motion-button {
-  transition: all 0.3s ease-out;
-}
-
-/* Cosmic subtle background for sections */
-section {
-  position: relative;
-  background-image: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-  background-size: 50px 50px;
-}
-
-/* Links & hover effects */
-a {
-  color: var(--primary);
-  transition: color 0.3s ease;
-}
-a:hover {
-  color: var(--secondary);
-}
-
-/* Utility classes for glows */
-.glow {
-  text-shadow: 0 0 8px var(--primary), 0 0 16px var(--accent-glow);
-}
-
-/* Hide scrollbars for smooth aesthetic */
-::-webkit-scrollbar {
-  width: 6px;
-}
+/* ─── Custom Scrollbar ──────────────────────────────────────── */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--bg-void); }
 ::-webkit-scrollbar-thumb {
-  background: var(--primary);
-  border-radius: 3px;
+  background: linear-gradient(180deg, var(--cyan), var(--violet));
+  border-radius: 2px;
 }
-::-webkit-scrollbar-track {
+
+/* ─── Typography ────────────────────────────────────────────── */
+h1, h2, h3, h4 { font-family: var(--font-display); letter-spacing: 0.05em; }
+
+.font-orbitron { font-family: var(--font-display); }
+.font-rajdhani { font-family: var(--font-body); }
+.font-mono-space { font-family: var(--font-mono); }
+
+/* ─── Neon Text Utilities ───────────────────────────────────── */
+.neon-cyan {
+  color: var(--cyan);
+  text-shadow: var(--cyan-glow);
+}
+.neon-magenta {
+  color: var(--magenta);
+  text-shadow: var(--magenta-glow);
+}
+.neon-violet {
+  color: var(--violet);
+  text-shadow: var(--violet-glow);
+}
+
+/* ─── Gradient Text ─────────────────────────────────────────── */
+.gradient-text {
+  background: linear-gradient(135deg, var(--cyan) 0%, var(--violet) 50%, var(--magenta) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.gradient-text-rev {
+  background: linear-gradient(135deg, var(--magenta) 0%, var(--violet) 50%, var(--cyan) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ─── Neon Border Cards ─────────────────────────────────────── */
+.neon-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-cyan);
+  border-radius: 16px;
+  position: relative;
+  transition: var(--transition);
+  overflow: hidden;
+}
+.neon-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 16px;
+  padding: 1px;
+  background: linear-gradient(135deg, var(--cyan), transparent 40%, transparent 60%, var(--magenta));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+.neon-card:hover::before { opacity: 1; }
+.neon-card:hover {
+  background: var(--bg-card-hover);
+  box-shadow: var(--cyan-glow);
+  transform: translateY(-4px);
+}
+
+/* ─── Glitch Effect ─────────────────────────────────────────── */
+@keyframes glitch-1 {
+  0%   { clip-path: inset(20% 0 60% 0); transform: translate(-4px, 0); }
+  20%  { clip-path: inset(80% 0 5% 0);  transform: translate(4px, 0); }
+  40%  { clip-path: inset(40% 0 40% 0); transform: translate(-2px, 0); }
+  60%  { clip-path: inset(5% 0 80% 0);  transform: translate(2px, 0); }
+  80%  { clip-path: inset(60% 0 20% 0); transform: translate(-4px, 0); }
+  100% { clip-path: inset(20% 0 60% 0); transform: translate(0, 0); }
+}
+@keyframes glitch-2 {
+  0%   { clip-path: inset(60% 0 20% 0); transform: translate(4px, 0); color: var(--magenta); }
+  25%  { clip-path: inset(10% 0 70% 0); transform: translate(-3px, 0); }
+  50%  { clip-path: inset(70% 0 10% 0); transform: translate(3px, 0); color: var(--cyan); }
+  75%  { clip-path: inset(30% 0 50% 0); transform: translate(-4px, 0); }
+  100% { clip-path: inset(60% 0 20% 0); transform: translate(0, 0); }
+}
+
+.glitch-text {
+  position: relative;
+  display: inline-block;
+}
+.glitch-text::before,
+.glitch-text::after {
+  content: attr(data-text);
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+}
+.glitch-text:hover::before {
+  opacity: 0.8;
+  color: var(--cyan);
+  animation: glitch-1 0.4s steps(1) forwards;
+}
+.glitch-text:hover::after {
+  opacity: 0.8;
+  animation: glitch-2 0.4s steps(1) forwards;
+}
+
+/* ─── Scanlines Overlay ─────────────────────────────────────── */
+.scanlines {
+  position: relative;
+}
+.scanlines::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0,0,0,0.04) 2px,
+    rgba(0,0,0,0.04) 4px
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ─── Star Field ────────────────────────────────────────────── */
+@keyframes twinkle {
+  0%, 100% { opacity: 0.2; transform: scale(1); }
+  50%       { opacity: 1;   transform: scale(1.5); }
+}
+@keyframes drift {
+  0%   { transform: translateY(0) translateX(0); }
+  100% { transform: translateY(-100vh) translateX(20px); }
+}
+
+/* ─── Neon Button ───────────────────────────────────────────── */
+.btn-neon {
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+  letter-spacing: 0.14em;
+  font-weight: 600;
+  padding: 0.9rem 2.8rem;
+  border-radius: 4px;
+  border: 1px solid var(--cyan);
+  color: var(--cyan);
   background: transparent;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  transition: var(--transition);
+  text-transform: uppercase;
+  display: inline-block;
+  -webkit-tap-highlight-color: transparent;
 }
+.btn-neon::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--cyan);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 0;
+}
+.btn-neon:hover::before { transform: scaleX(1); }
+.btn-neon:hover { color: var(--bg-void); box-shadow: var(--cyan-glow); }
+.btn-neon span { position: relative; z-index: 1; }
+
+/* Mobile tap flash — plays the fill animation before navigation */
+@media (hover: none) {
+  .btn-neon:active::before {
+    transform: scaleX(1);
+    transition: transform 0.2s ease-out;
+  }
+  .btn-neon:active {
+    color: var(--bg-void);
+    box-shadow: var(--cyan-glow);
+  }
+  .btn-neon-mag:active {
+    color: var(--bg-void);
+    box-shadow: var(--magenta-glow);
+  }
+}
+
+.btn-neon-mag {
+  border-color: var(--magenta);
+  color: var(--magenta);
+}
+.btn-neon-mag::before { background: var(--magenta); }
+.btn-neon-mag:hover { color: var(--bg-void); box-shadow: var(--magenta-glow); }
+
+/* ─── Section Divider ───────────────────────────────────────── */
+.section-divider {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--cyan), var(--magenta), var(--violet), transparent);
+  opacity: 0.4;
+}
+
+/* ─── Floating Particles Background ────────────────────────── */
+@keyframes float-up {
+  0%   { opacity: 0; transform: translateY(100px) scale(0); }
+  10%  { opacity: 1; }
+  90%  { opacity: 1; }
+  100% { opacity: 0; transform: translateY(-100px) scale(1.5); }
+}
+
+/* ─── Grid Pattern ──────────────────────────────────────────── */
+.grid-bg {
+  background-image:
+    linear-gradient(rgba(0,245,255,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,245,255,0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+/* ─── Pulse Ring ────────────────────────────────────────────── */
+@keyframes pulse-ring {
+  0%   { transform: scale(0.8); opacity: 1; }
+  100% { transform: scale(2.5); opacity: 0; }
+}
+.pulse-ring {
+  animation: pulse-ring 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* ─── Typewriter cursor ─────────────────────────────────────── */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+.cursor-blink {
+  animation: blink 1s step-end infinite;
+}
+
+/* ─── Horizontal scroll animation ──────────────────────────── */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+.marquee-track {
+  animation: marquee 20s linear infinite;
+  display: flex;
+  width: max-content;
+}
+.marquee-track:hover { animation-play-state: paused; }
+
+/* ─── Cosmic glow input focus ───────────────────────────────── */
+input:focus, textarea:focus {
+  outline: none;
+  border-color: var(--cyan) !important;
+  box-shadow: 0 0 0 2px rgba(0,245,255,0.2), var(--cyan-glow) !important;
+}
+
+/* ─── Hero Background — dual layer, CSS-controlled ──────────── */
+
+@media (max-width: 768px) {
+  .hero-bg-mobile  { display: block; }
+  .hero-bg-desktop { display: none !important; }
+}
+@media (min-width: 769px) {
+  .hero-bg-mobile  { display: none !important; }
+  .hero-bg-desktop { display: block; }
+}
+
+/*
+  Mobile background initial state.
+  scale(1.25) gives 25% extra image size. On a 900px tall mobile
+  hero that is ~225px of travel room — enough for the bg to move
+  DOWN by up to ~200px without revealing any edge.
+  JS drives translate3d on every rAF tick.
+*/
+.hero-bg-mobile {
+  transform: translate3d(0px, 0px, 0px) scale(1.25);
+  will-change: transform;
+}
+
+/* Cancel Framer's scroll transforms on mobile — bg handles depth */
+@media (max-width: 768px) {
+  .hero-content {
+    transform: none !important;
+    opacity:   1    !important;
+  }
+}
+
+/* ─── Animations ────────────────────────────────────────────── */
+@keyframes spin-slow { to { transform: rotate(360deg); } }
+.animate-spin-slow { animation: spin-slow 8s linear infinite; }
+
+@keyframes warp-in {
+  from { opacity: 0; transform: scale(0.8) translateY(20px); }
+  to   { opacity: 1; transform: scale(1) translateY(0); }
+}
+.animate-warp-in { animation: warp-in 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) both; }
+
+/* ─── Scroll Reveal ─────────────────────────────────────────── */
+/* Elements start hidden; JS adds .is-visible to trigger reveal */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-36px);
+  transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+.reveal-left.is-visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+.reveal-right {
+  opacity: 0;
+  transform: translateX(36px);
+  transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+.reveal-right.is-visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+/* Stagger delays */
+.reveal-d1 { transition-delay: 0.08s; }
+.reveal-d2 { transition-delay: 0.16s; }
+.reveal-d3 { transition-delay: 0.24s; }
+.reveal-d4 { transition-delay: 0.32s; }
+.reveal-d5 { transition-delay: 0.40s; }
+.reveal-d6 { transition-delay: 0.48s; }
