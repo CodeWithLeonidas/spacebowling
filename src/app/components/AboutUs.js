@@ -1,12 +1,13 @@
 'use client'
 
 import { useEffect, useRef } from 'react'
+import SaturnBall from './SaturnBall'
 
 const stats = [
-  { value: '6',   label: 'BOWLING LANES' },
+  { value: '6', label: 'BOWLING LANES' },
   { value: '10+', label: 'YEARS OF FUN' },
-  { value: '1',   label: 'BILLIARD TABLE' },
-  { value: '∞',   label: 'GOOD TIMES' },
+  { value: '1', label: 'BILLIARD TABLE' },
+  { value: '∞', label: 'GOOD TIMES' },
 ]
 
 export default function AboutUs() {
@@ -57,18 +58,8 @@ export default function AboutUs() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-20">
 
           {/* Image */}
-          <div className="reveal-left relative">
-            <div className="relative rounded-2xl overflow-hidden border border-[var(--border-cyan)] shadow-[0_0_60px_rgba(0,245,255,0.08)]">
-              <img
-                src="/images/about.png"
-                alt="Space Bowling neon bowling experience in Halkidiki, Greece"
-                className="w-full h-[480px] object-cover"
-                loading="lazy"
-              />
-              <div className="absolute inset-0 scanlines pointer-events-none" aria-hidden="true" />
-              <div className="absolute top-4 left-4 w-8 h-8 border-t-2 border-l-2 border-[var(--cyan)]" aria-hidden="true" />
-              <div className="absolute bottom-4 right-4 w-8 h-8 border-b-2 border-r-2 border-[var(--magenta)]" aria-hidden="true" />
-            </div>
+          <div className="reveal-left relative flex items-center justify-center">
+            <SaturnBall />
           </div>
 
           {/* Text */}
