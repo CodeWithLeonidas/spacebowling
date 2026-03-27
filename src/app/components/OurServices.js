@@ -7,7 +7,7 @@ const services = [
     icon: '🎳',
     title: 'Bowling Lanes',
     short: '6 STATE OF THE ART LANES',
-    desc: 'Six fully equipped space-themed bowling lanes with automated scoring, neon lighting, and professional equipment for players of all skill levels.',
+    desc: 'Six fully equipped space-themed bowling lanes with automated scoring, neon lighting, and professional equipment. Strike your way through the universe for players of all skill levels.',
     accent: 'var(--cyan)',
     price: '5.5€ / player / game',
   },
@@ -186,8 +186,7 @@ export default function OurServices() {
             OUR SERVICES
           </h2>
           <p className="reveal reveal-d2 text-white/50 text-xl max-w-2xl mx-auto" style={{ fontFamily: 'var(--font-body)' }}>
-            Ready to strike this universe? Discover the best neon bowling experience
-            and unbeatable services at Space Bowling Greece.
+            Ready to strike? Discover this universe of neon bowling excellence and unbeatable entertainment services at Space Bowling Greece.
           </p>
         </div>
 
