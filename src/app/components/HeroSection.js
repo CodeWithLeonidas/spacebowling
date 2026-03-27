@@ -219,19 +219,14 @@ export default function HeroSection() {
             style={{ fontFamily: 'var(--font-display)' }}
           >
             <span className="gradient-text glitch-text" data-text="STRIKE">STRIKE</span>
+            <span className="font-orbitron text-3xl sm:text-4xl lg:text-6xl font-thin tracking-[0.4em] text-white/40 block mt-2">
+              THIS
+            </span>
+            <span className="font-orbitron text-4xl sm:text-5xl lg:text-7xl font-black tracking-widest neon-cyan block">
+              UNIVERSE
+            </span>
+            <span className="sr-only">Space Bowling Greece - Bowling Bar Nightlife Entertainment in Halkidiki</span>
           </h1>
-          <h2
-            className="font-orbitron text-3xl sm:text-4xl lg:text-6xl font-thin tracking-[0.4em] text-white/40 mb-2"
-            style={{ fontFamily: 'var(--font-display)' }}
-          >
-            THIS
-          </h2>
-          <h2
-            className="font-orbitron text-4xl sm:text-5xl lg:text-7xl font-black tracking-widest neon-cyan"
-            style={{ fontFamily: 'var(--font-display)' }}
-          >
-            UNIVERSE
-          </h2>
         </motion.div>
 
         {/* CTAs */}

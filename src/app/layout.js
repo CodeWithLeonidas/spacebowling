@@ -8,11 +8,11 @@ import { SpeedInsights } from '@vercel/speed-insights/next'
 export const metadata = {
   metadataBase: new URL('https://www.spacebowling.gr'),
   title: {
-    default: 'Space Bowling Greece | Cosmic Bowling in Halkidiki',
+    default: 'Space Bowling Greece | Bowling Bar & Nightlife Halkidiki',
     template: '%s | Space Bowling Greece',
   },
   description:
-    'Space Bowling Greece — the ultimate bowling, bar & entertainment venue in Kalithea, Halkidiki. Neon-lit lanes, signature cocktails, billiards, arcade games, nightlife & free parking. Best things to do in Halkidiki for tourists & families. Reopening Summer 2026.',
+    'Top nightlife & entertainment in Kalithea, Halkidiki. Bowling bar with neon lanes, cocktails, billiards, arcade games. Free WiFi & parking. Best things to do for tourists. Open 18:00-03:00 daily. Reopening Summer 2026.',
   keywords: [
     'Space Bowling Greece',
     'things to do in Halkidiki',
@@ -55,9 +55,9 @@ export const metadata = {
     locale: 'en_US',
     url: 'https://www.spacebowling.gr/',
     siteName: 'Space Bowling Greece',
-    title: 'Space Bowling Greece | Nightlife, Bar & Entertainment in Halkidiki',
+    title: 'Space Bowling Greece | Nightlife & Entertainment Halkidiki',
     description:
-      'Top nightlife & entertainment venue in Halkidiki! Bowling, cocktail bar, billiards, arcade games. Best things to do in Kalithea for tourists & families. Free WiFi & parking.',
+      'Best nightlife in Halkidiki! Bowling bar, cocktails, billiards, arcade in Kalithea. Free WiFi & parking. Top things to do for tourists.',
     images: [
       {
         url: 'https://www.spacebowling.gr/images/gallery.jpg',
@@ -71,9 +71,9 @@ export const metadata = {
     card: 'summary_large_image',
     site: '@spacebowlinggr',
     creator: '@spacebowlinggr',
-    title: 'Space Bowling Greece | Nightlife, Bar & Entertainment in Halkidiki',
+    title: 'Space Bowling Greece | Nightlife Halkidiki',
     description:
-      'Top nightlife & entertainment in Kalithea, Halkidiki. Bowling, cocktail bar, billiards, arcade. Best things to do for tourists.',
+      'Best nightlife in Halkidiki! Bowling bar, cocktails, billiards, arcade. Free WiFi & parking. Top tourist venue.',
     images: ['https://www.spacebowling.gr/images/gallery.jpg'],
   },
   verification: {

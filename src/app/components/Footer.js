@@ -87,7 +87,6 @@ export default function Footer() {
               {[
                 { href: 'tel:+306972033463', icon: '📞', label: 'Call +30 697 203 3463', text: '+30 697 203 3463' },
                 { href: 'tel:+306979658337', icon: '📞', label: 'Call +30 697 965 8337', text: '+30 697 965 8337' },
-                { href: 'mailto:spacebowling@outlook.com', icon: '✉️', label: 'Email Space Bowling', text: 'spacebowling@outlook.com' },
               ].map(({ href, icon, label, text }) => (
                 <a key={href} href={href} aria-label={label}
                   className="flex items-center gap-3 text-white/40 hover:text-white transition-colors duration-300 text-base group" style={{ fontFamily: 'var(--font-body)' }}>

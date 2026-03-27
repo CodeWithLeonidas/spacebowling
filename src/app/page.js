@@ -1,16 +1,16 @@
 import HomeClient from "./HomeClient";
 
 export const generateMetadata = () => ({
-  title: "Space Bowling Greece | Nightlife, Bar & Entertainment in Halkidiki",
+  title: "Space Bowling Greece | Nightlife & Entertainment Halkidiki",
   description:
-    "Top things to do in Halkidiki! Space Bowling offers the best nightlife, bowling bar, cocktails, billiards & arcade games in Kalithea. Premier tourist entertainment venue with free WiFi & parking. Unforgettable nights await!",
+    "Best nightlife & things to do in Halkidiki! Bowling bar, cocktails, billiards, arcade games in Kalithea. Free WiFi & parking. Open 18:00-03:00.",
   alternates: {
     canonical: "https://www.spacebowling.gr/",
   },
   openGraph: {
-    title: "Space Bowling Greece | Best Nightlife & Things to Do in Halkidiki",
+    title: "Space Bowling Greece | Nightlife & Entertainment Halkidiki",
     description:
-      "Experience Halkidiki's premier entertainment venue! Bowling, cocktail bar, billiards, arcade games. Top tourist attraction for nightlife & fun activities in Kalithea.",
+      "Top nightlife in Halkidiki! Bowling, cocktail bar, billiards, arcade games in Kalithea. Free WiFi & parking. Best things to do.",
     url: "https://www.spacebowling.gr/",
     images: [
       {
@@ -24,9 +24,9 @@ export const generateMetadata = () => ({
   },
   twitter: {
     card: "summary_large_image",
-    title: "Space Bowling Greece | Best Nightlife & Entertainment in Halkidiki",
+    title: "Space Bowling Greece | Nightlife Halkidiki",
     description:
-      "Top things to do in Halkidiki! Bowling bar, cocktails, arcade games, billiards. Best nightlife & tourist entertainment in Kalithea.",
+      "Best nightlife in Halkidiki! Bowling bar, cocktails, arcade, billiards. Free WiFi & parking. Open 18:00-03:00 daily.",
     images: ["https://www.spacebowling.gr/images/gallery.jpg"],
   },
 });
