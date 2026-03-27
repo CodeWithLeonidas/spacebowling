@@ -118,7 +118,7 @@ export default function AboutUs() {
       </div>
 
       <span className="sr-only">
-        Space Bowling Greece tourist attraction in Kalithea Halkidiki, bowling and entertainment for all ages.
+        Space Bowling Greece — premier tourist attraction and entertainment venue in Kalithea Halkidiki. Things to do in Halkidiki: bowling, nightlife, bar, billiards, arcade games. Fun activities for tourists, families, groups, and couples. Best evening entertainment destination.
       </span>
     </section>
   )

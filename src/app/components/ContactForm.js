@@ -14,7 +14,6 @@ const fields = [
 const contactInfo = [
   { icon: '📞', label: 'PHONE', value: '+30 697 203 3463', href: 'tel:+306972033463' },
   { icon: '📞', label: 'PHONE', value: '+30 697 965 8337', href: 'tel:+306979658337' },
-  { icon: '✉️', label: 'EMAIL', value: 'spacebowling@outlook.com', href: 'mailto:spacebowling@outlook.com' },
   { icon: '📍', label: 'ADDRESS', value: 'Kalithea, Halkidiki, GR', href: null },
 ]
 
@@ -245,7 +244,7 @@ export default function ContactForm() {
       </div>
 
       <span className="sr-only">
-        Space Bowling Greece contact — Phone: +30 697 203 3463. Email: spacebowling@outlook.com.
+        Space Bowling Greece contact — Phone: +30 697 203 3463.
       </span>
     </section>
   )

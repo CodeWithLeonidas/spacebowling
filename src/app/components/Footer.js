@@ -117,7 +117,7 @@ export default function Footer() {
         </div>
       </div>
 
-      <span className="sr-only">Space Bowling Greece — Neon bowling in Kalithea, Halkidiki. spacebowling@outlook.com, +30 697 203 3463.</span>
+      <span className="sr-only">Space Bowling Greece — Top nightlife, entertainment, bowling bar, cocktails, billiards, and arcade games in Kalithea, Halkidiki. Best things to do and tourist activities. Contact: spacebowling@outlook.com, +30 697 203 3463, +30 697 965 8337. Club Aerea venue with free WiFi and parking.</span>
     </footer>
   )
 }

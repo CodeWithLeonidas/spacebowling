@@ -94,7 +94,7 @@ export default function WorkingHours() {
                 SEASON HOURS: 18:00 – 03:00 DAILY
               </p>
             </div>
-            <span className="sr-only">Space Bowling Greece — Open daily 18:00 to 03:00 during season, currently closed until Summer 2026.</span>
+            <span className="sr-only">Space Bowling Greece nightlife and entertainment venue — Open daily 18:00 to 03:00 during tourist season. Best evening activities in Halkidiki. Currently closed until Summer 2026.</span>
           </div>
 
           {/* Map Card */}
@@ -129,7 +129,7 @@ export default function WorkingHours() {
         </div>
       </div>
 
-      <span className="sr-only">Space Bowling Greece location: Kalithea, Halkidiki, Club Aerea.</span>
+      <span className="sr-only">Space Bowling Greece location: Club Aerea, Kalithea, Halkidiki tourist district. Premier nightlife, bowling, bar and entertainment destination for tourists and visitors.</span>
     </section>
   )
 }

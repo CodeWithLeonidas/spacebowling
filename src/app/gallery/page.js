@@ -198,7 +198,7 @@ export default function GalleryPage() {
       </AnimatePresence>
 
       <span className="sr-only">
-        Space Bowling Greece full gallery — neon bowling photos from Kalithea, Halkidiki.
+        Space Bowling Greece photo gallery — nightlife, entertainment, bowling bar, cocktails, billiards, and arcade games in Kalithea, Halkidiki. See our neon-lit bowling venue, bar atmosphere, and entertainment facilities. Top tourist attraction photos, things to do in Halkidiki for tourists, families, and groups.
       </span>
     </div>
   )
