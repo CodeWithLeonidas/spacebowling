@@ -107,6 +107,7 @@ h1, h2, h3, h4 { font-family: var(--font-display); letter-spacing: 0.05em; }
   mask-composite: exclude;
   opacity: 0;
   transition: opacity 0.4s ease;
+  pointer-events: none;
 }
 .neon-card:hover::before { opacity: 1; }
 .neon-card:hover {
@@ -215,20 +216,18 @@ h1, h2, h3, h4 { font-family: var(--font-display); letter-spacing: 0.05em; }
 .btn-neon:hover { color: var(--bg-void); box-shadow: var(--cyan-glow); }
 .btn-neon span { position: relative; z-index: 1; }
 
-/* Mobile tap flash — plays the fill animation before navigation */
-@media (hover: none) {
-  .btn-neon:active::before {
-    transform: scaleX(1);
-    transition: transform 0.2s ease-out;
-  }
-  .btn-neon:active {
-    color: var(--bg-void);
-    box-shadow: var(--cyan-glow);
-  }
-  .btn-neon-mag:active {
-    color: var(--bg-void);
-    box-shadow: var(--magenta-glow);
-  }
+/* Mobile tap flash — JS adds .is-pressed, plays fill then navigates */
+.btn-neon.is-pressed::before {
+  transform: scaleX(1);
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.btn-neon.is-pressed {
+  color: var(--bg-void);
+  box-shadow: var(--cyan-glow);
+}
+.btn-neon-mag.is-pressed {
+  color: var(--bg-void);
+  box-shadow: var(--magenta-glow);
 }
 
 .btn-neon-mag {

@@ -48,7 +48,7 @@ export default function GalleryPage() {
   return (
     /* No <main> here — layout.js already wraps children in <main> */
     <div
-      className="relative min-h-screen"
+      className="relative min-h-screen overflow-x-hidden"
       style={{ background: 'var(--bg-void)' }}
       aria-label="Space Bowling Greece Full Gallery"
     >

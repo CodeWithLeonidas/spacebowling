@@ -1,7 +1,7 @@
 'use client'
 
 import { motion, useScroll, useTransform } from 'framer-motion'
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 /* ── Deterministic stars ─────────────────────────────────────── */
 const STARS = Array.from({ length: 90 }, (_, i) => ({
@@ -47,14 +47,22 @@ function OrbitRings() {
 }
 
 function MobileDelayButton({ onClick, className, children, ...props }) {
-  const isMobileRef = useRef(false)
-  useEffect(() => { isMobileRef.current = window.matchMedia('(hover: none)').matches }, [])
-  const handleClick = (e) => {
-    if (isMobileRef.current) { e.preventDefault(); setTimeout(() => onClick(e), 220) }
-    else onClick(e)
+  const [pressed, setPressed] = useState(false)
+  const pendingRef = useRef(null)
+
+  useEffect(() => () => { if (pendingRef.current) clearTimeout(pendingRef.current) }, [])
+
+  const handlePointerUp = (e) => {
+    if (e.pointerType === 'touch') {
+      e.preventDefault()
+      setPressed(true)
+      pendingRef.current = setTimeout(() => { setPressed(false); onClick(e) }, 450)
+    } else {
+      onClick(e)
+    }
   }
   return (
-    <motion.button onClick={handleClick} whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.92 }} className={className} {...props}>
+    <motion.button onPointerUp={handlePointerUp} whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.92 }} className={`${className}${pressed ? ' is-pressed' : ''}`} {...props}>
       <span>{children}</span>
     </motion.button>
   )
@@ -196,15 +204,15 @@ export default function HeroSection() {
           transition={{ duration: 0.8, delay: 0.2 }}
           className="inline-flex items-center gap-3 mb-10"
         >
-          <span className="relative flex h-2 w-2">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[var(--magenta)] opacity-75" />
-            <span className="relative inline-flex rounded-full h-2 w-2 bg-[var(--magenta)]" />
+          <span className="relative flex h-2.5 w-2.5">
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75" />
+            <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-amber-400 shadow-[0_0_12px_rgba(251,191,36,0.8)]" />
           </span>
           <span
-            className="font-mono-space text-xs tracking-[0.3em] text-[var(--magenta)] uppercase border border-[var(--magenta)]/30 px-4 py-1.5 rounded-full backdrop-blur-sm"
+            className="font-mono-space text-xs tracking-[0.3em] text-amber-400 uppercase border border-amber-400/40 px-4 py-1.5 rounded-full backdrop-blur-sm bg-amber-400/[0.08] shadow-[0_0_20px_rgba(251,191,36,0.15)]"
             style={{ fontFamily: 'var(--font-mono)' }}
           >
-            REOPENING SUMMER 2026
+            OPENING MAY 1ST
           </span>
         </motion.div>
 
@@ -239,9 +247,9 @@ export default function HeroSection() {
           <MobileDelayButton onClick={handleScrollToServices} className="btn-neon" aria-label="Explore services">
             EXPLORE SERVICES
           </MobileDelayButton>
-          <MobileDelayLink href="/gallery" className="btn-neon btn-neon-mag" aria-label="View gallery">
-            VIEW GALLERY
-          </MobileDelayLink>
+          <MobileDelayButton onClick={() => document.getElementById('working-hours')?.scrollIntoView({ behavior: 'smooth' })} className="btn-neon btn-neon-mag" aria-label="Working hours">
+            WORKING HOURS
+          </MobileDelayButton>
         </motion.div>
       </motion.div>
 

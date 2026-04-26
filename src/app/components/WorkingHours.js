@@ -51,25 +51,25 @@ export default function WorkingHours() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
 
           {/* Hours Card */}
-          <div className="reveal-left neon-card p-8" aria-label="Working Hours">
-            <div className="flex items-center gap-4 mb-8">
-              <div className="w-12 h-12 flex items-center justify-center rounded-lg border border-[var(--border-cyan)] text-2xl flex-shrink-0" aria-hidden="true">🕐</div>
+          <div className="reveal-left neon-card p-5 sm:p-8" aria-label="Working Hours">
+            <div className="flex items-center gap-3 sm:gap-4 mb-6 sm:mb-8">
+              <div className="w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center rounded-lg border border-[var(--border-cyan)] text-xl sm:text-2xl flex-shrink-0" aria-hidden="true">🕐</div>
               <div>
-                <h3 className="font-orbitron text-2xl font-bold text-white" style={{ fontFamily: 'var(--font-display)' }}>WORKING HOURS</h3>
-                <p className="font-mono-space text-xs tracking-widest text-[var(--magenta)] mt-1" style={{ fontFamily: 'var(--font-mono)' }}>CLOSED UNTIL SUMMER 2026</p>
+                <h3 className="font-orbitron text-xl sm:text-2xl font-bold text-white" style={{ fontFamily: 'var(--font-display)' }}>WORKING HOURS</h3>
+                <p className="font-mono-space text-[10px] sm:text-xs tracking-widest text-[var(--cyan)] mt-1" style={{ fontFamily: 'var(--font-mono)' }}>2026 SEASON</p>
               </div>
             </div>
 
             {/* Status banner */}
-            <div className="relative mb-8 px-5 py-4 rounded-xl border border-[var(--magenta)]/20 bg-[var(--magenta)]/[0.04] overflow-hidden">
-              <div className="absolute left-0 top-0 bottom-0 w-1 bg-[var(--magenta)] rounded-l-xl" aria-hidden="true" />
+            <div className="relative mb-6 sm:mb-8 px-4 sm:px-5 py-3 sm:py-4 rounded-xl border border-amber-400/30 bg-amber-400/[0.08] overflow-hidden shadow-[0_0_30px_rgba(251,191,36,0.15)]">
+              <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-amber-400 to-amber-400/60 rounded-l-xl shadow-[0_0_8px_rgba(251,191,36,0.6)]" aria-hidden="true" />
               <div className="flex items-center gap-3">
                 <span className="relative flex h-2.5 w-2.5 flex-shrink-0">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[var(--magenta)] opacity-75" />
-                  <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-[var(--magenta)]" />
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75" />
+                  <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-amber-400 shadow-[0_0_10px_rgba(251,191,36,0.8)]" />
                 </span>
-                <p className="font-mono-space text-sm text-[var(--magenta)] tracking-wider font-medium" style={{ fontFamily: 'var(--font-mono)' }}>
-                  VENUE CLOSED — REOPENING SUMMER 2026
+                <p className="font-mono-space text-xs sm:text-sm text-amber-400 tracking-wider font-medium" style={{ fontFamily: 'var(--font-mono)' }}>
+                  OPENING SOON: MAY 1st, 2026
                 </p>
               </div>
             </div>
@@ -78,36 +78,36 @@ export default function WorkingHours() {
               {days.map((day, i) => (
                 <li
                   key={day}
-                  className={`reveal reveal-d${Math.min(i + 1, 6)} flex items-center justify-between px-4 py-3.5 rounded-lg border border-white/[0.04] hover:border-[var(--border-cyan)] hover:bg-white/[0.02] transition-all duration-300 group`}
+                  className={`reveal reveal-d${Math.min(i + 1, 6)} flex items-center justify-between px-3 sm:px-4 py-2.5 sm:py-3.5 rounded-lg border border-[var(--border-cyan)]/20 hover:border-[var(--border-cyan)] hover:bg-[var(--cyan)]/[0.03] transition-all duration-300 group bg-white/[0.01]`}
                 >
-                  <div className="flex items-center gap-3">
-                    <span className="w-1 h-5 rounded-full bg-white/10 group-hover:bg-[var(--cyan)] transition-colors duration-300 flex-shrink-0" aria-hidden="true" />
-                    <span className="text-lg font-semibold text-white/75" style={{ fontFamily: 'var(--font-body)' }}>{day}</span>
+                  <div className="flex items-center gap-2 sm:gap-3">
+                    <span className="w-1 h-4 sm:h-5 rounded-full bg-[var(--cyan)]/40 group-hover:bg-[var(--cyan)] group-hover:shadow-[0_0_8px_var(--cyan)] transition-all duration-300 flex-shrink-0" aria-hidden="true" />
+                    <span className="text-base sm:text-lg font-semibold text-white/90" style={{ fontFamily: 'var(--font-body)' }}>{day}</span>
                   </div>
-                  <span className="font-mono-space text-sm tracking-[0.2em] text-white/35 font-medium" style={{ fontFamily: 'var(--font-mono)' }}>CLOSED</span>
+                  <span className="font-mono-space text-xs sm:text-sm tracking-[0.15em] sm:tracking-[0.2em] text-[var(--cyan)]/80 font-medium" style={{ fontFamily: 'var(--font-mono)' }}>18:00 – 01:00</span>
                 </li>
               ))}
             </ul>
 
             <div className="mt-6 pt-6 border-t border-white/[0.06]">
               <p className="font-mono-space text-xs tracking-widest text-white/30 text-center" style={{ fontFamily: 'var(--font-mono)' }}>
-                SEASON HOURS: 18:00 – 03:00 DAILY
+                HIGH SEASON HOURS: 18:00 – 03:00 DAILY
               </p>
             </div>
-            <span className="sr-only">Space Bowling Greece nightlife and entertainment venue — Open daily 18:00 to 03:00 during tourist season. Best evening activities in Halkidiki. Currently closed until Summer 2026.</span>
+            <span className="sr-only">Space Bowling Greece nightlife and entertainment venue — Open daily 18:00 to 01:00 during tourist season. Best evening activities in Halkidiki. Currently closed until Summer 2026.</span>
           </div>
 
           {/* Map Card */}
-          <div className="reveal-right neon-card p-8 flex flex-col" aria-label="Location Map">
-            <div className="flex items-center gap-4 mb-8">
-              <div className="w-12 h-12 flex items-center justify-center rounded-lg border border-[var(--border-cyan)] text-2xl flex-shrink-0" aria-hidden="true">📍</div>
+          <div className="reveal-right neon-card p-5 sm:p-8 flex flex-col" aria-label="Location Map">
+            <div className="flex items-center gap-3 sm:gap-4 mb-6 sm:mb-8">
+              <div className="w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center rounded-lg border border-[var(--border-cyan)] text-xl sm:text-2xl flex-shrink-0" aria-hidden="true">📍</div>
               <div>
-                <h3 className="font-orbitron text-2xl font-bold text-white" style={{ fontFamily: 'var(--font-display)' }}>FIND US HERE</h3>
-                <p className="font-mono-space text-xs tracking-widest text-[var(--cyan)] mt-1" style={{ fontFamily: 'var(--font-mono)' }}>KALITHEA · HALKIDIKI · GREECE</p>
+                <h3 className="font-orbitron text-xl sm:text-2xl font-bold text-white" style={{ fontFamily: 'var(--font-display)' }}>FIND US HERE</h3>
+                <p className="font-mono-space text-[10px] sm:text-xs tracking-widest text-[var(--cyan)] mt-1" style={{ fontFamily: 'var(--font-mono)' }}>KALITHEA · HALKIDIKI · GREECE</p>
               </div>
             </div>
 
-            <div className="flex-1 rounded-xl overflow-hidden border border-[var(--border-cyan)] relative min-h-[360px]">
+            <div className="flex-1 rounded-xl overflow-hidden border border-[var(--border-cyan)] relative min-h-[300px] sm:min-h-[360px]">
               <iframe
                 className="w-full h-full absolute inset-0"
                 style={{ filter: 'invert(0.92) hue-rotate(180deg) saturate(0.8)' }}
@@ -120,8 +120,8 @@ export default function WorkingHours() {
               <div className="absolute bottom-3 right-3 w-6 h-6 border-b-2 border-r-2 border-[var(--magenta)] z-10 pointer-events-none" aria-hidden="true" />
             </div>
 
-            <div className="mt-5 flex items-center gap-3 pt-4 border-t border-white/[0.06]">
-              <span className="font-mono-space text-sm tracking-[0.15em] text-white/45 uppercase" style={{ fontFamily: 'var(--font-mono)' }}>
+            <div className="mt-4 sm:mt-5 flex items-center gap-3 pt-3 sm:pt-4 border-t border-white/[0.06]">
+              <span className="font-mono-space text-xs sm:text-sm tracking-[0.15em] text-white/45 uppercase" style={{ fontFamily: 'var(--font-mono)' }}>
                 Club Aerea · Kallithea · Halkidiki
               </span>
             </div>

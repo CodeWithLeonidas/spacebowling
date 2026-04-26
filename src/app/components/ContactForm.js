@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import emailjs from '@emailjs/browser'
-import { FaFacebook, FaInstagram } from 'react-icons/fa'
+import { FaFacebook, FaInstagram, FaPhone, FaMapMarkerAlt, FaCopy } from 'react-icons/fa'
 
 const fields = [
   { id: 'name', name: 'user_name', label: 'YOUR NAME', type: 'text', placeholder: 'John Doe', autoComplete: 'name' },
@@ -12,9 +12,9 @@ const fields = [
 ]
 
 const contactInfo = [
-  { icon: '📞', label: 'PHONE', value: '+30 697 203 3463', href: 'tel:+306972033463' },
-  { icon: '📞', label: 'PHONE', value: '+30 697 965 8337', href: 'tel:+306979658337' },
-  { icon: '📍', label: 'ADDRESS', value: 'Kalithea, Halkidiki, GR', href: null },
+  { type: 'phone', label: 'PHONE', value: '+30 697 203 3463', href: 'tel:+306972033463' },
+  { type: 'phone', label: 'PHONE', value: '+30 697 965 8337', href: 'tel:+306979658337' },
+  { type: 'address', label: 'ADDRESS', value: 'Kalithea, Halkidiki, GR', href: null },
 ]
 
 /* ── Submit button — spinner perfectly inline with text ──────── */
@@ -128,21 +128,28 @@ export default function ContactForm() {
           {/* Sidebar */}
           <div className="reveal-left lg:col-span-2 flex flex-col gap-4">
 
-            {contactInfo.map(({ icon, label, value, href }, i) => (
-              <div key={i} className={`reveal reveal-d${i + 1} neon-card p-5 flex items-start gap-4`}>
-                <span className="text-2xl flex-shrink-0 mt-0.5">{icon}</span>
-                <div className="flex-1">
+            {contactInfo.map(({ type, label, value, href }, i) => (
+              <div key={i} className={`reveal reveal-d${i + 1} neon-card p-5 flex items-center gap-4`}>
+                <span className="text-2xl flex-shrink-0">
+                  {type === 'phone' ? <FaPhone className="text-[var(--cyan)]/80" /> : <FaMapMarkerAlt className="text-[var(--cyan)]/80" />}
+                </span>
+                <div className="flex-1 min-w-0">
                   <div className="font-mono-space text-xs tracking-[0.3em] text-[var(--cyan)] mb-1.5">{label}</div>
-                  {href ? (
-                    <span className="text-white/80 hover:text-white transition-colors duration-300 text-base font-medium" style={{ fontFamily: 'var(--font-body)' }}>
-                      {value}
-                    </span>
-                  ) : (
-                    <span className="text-white/80 hover:text-white transition-colors duration-300 text-base font-medium" style={{ fontFamily: 'var(--font-body)' }}>
-                      {value}
-                    </span>
-                  )}
+                  <span className="text-white/80 hover:text-white transition-colors duration-300 text-base font-medium" style={{ fontFamily: 'var(--font-body)' }}>
+                    {value}
+                  </span>
                 </div>
+                {type === 'phone' && (
+                  <div className="flex lg:hidden gap-2 flex-shrink-0">
+                    <a
+                      href={href}
+                      aria-label={`Call ${value}`}
+                      className="p-2 rounded-lg border border-white/[0.08] hover:border-[var(--cyan)]/50 hover:bg-[var(--cyan)]/[0.07] transition-all duration-300"
+                    >
+                      <FaPhone size={16} className="text-white/45" />
+                    </a>
+                  </div>
+                )}
               </div>
             ))}
 
