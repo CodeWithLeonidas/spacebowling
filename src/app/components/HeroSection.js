@@ -205,14 +205,14 @@ export default function HeroSection() {
           className="inline-flex items-center gap-3 mb-10"
         >
           <span className="relative flex h-2.5 w-2.5">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75" />
-            <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-amber-400 shadow-[0_0_12px_rgba(251,191,36,0.8)]" />
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+            <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-400 shadow-[0_0_12px_rgba(52,211,153,0.8)]" />
           </span>
           <span
-            className="font-mono-space text-xs tracking-[0.3em] text-amber-400 uppercase border border-amber-400/40 px-4 py-1.5 rounded-full backdrop-blur-sm bg-amber-400/[0.08] shadow-[0_0_20px_rgba(251,191,36,0.15)]"
+            className="font-mono-space text-xs tracking-[0.3em] text-emerald-400 uppercase border border-emerald-400/40 px-4 py-1.5 rounded-full backdrop-blur-sm bg-emerald-400/[0.08] shadow-[0_0_20px_rgba(52,211,153,0.15)]"
             style={{ fontFamily: 'var(--font-mono)' }}
           >
-            OPENING MAY 1ST
+            OPEN FOR 2026
           </span>
         </motion.div>
 

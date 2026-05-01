@@ -56,20 +56,20 @@ export default function WorkingHours() {
               <div className="w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center rounded-lg border border-[var(--border-cyan)] text-xl sm:text-2xl flex-shrink-0" aria-hidden="true">🕐</div>
               <div>
                 <h3 className="font-orbitron text-xl sm:text-2xl font-bold text-white" style={{ fontFamily: 'var(--font-display)' }}>WORKING HOURS</h3>
-                <p className="font-mono-space text-[10px] sm:text-xs tracking-widest text-[var(--cyan)] mt-1" style={{ fontFamily: 'var(--font-mono)' }}>2026 SEASON</p>
+                <p className="font-mono-space text-[10px] sm:text-xs tracking-widest text-[var(--cyan)] mt-1" style={{ fontFamily: 'var(--font-mono)' }}>SUMMER 2026</p>
               </div>
             </div>
 
             {/* Status banner */}
-            <div className="relative mb-6 sm:mb-8 px-4 sm:px-5 py-3 sm:py-4 rounded-xl border border-amber-400/30 bg-amber-400/[0.08] overflow-hidden shadow-[0_0_30px_rgba(251,191,36,0.15)]">
-              <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-amber-400 to-amber-400/60 rounded-l-xl shadow-[0_0_8px_rgba(251,191,36,0.6)]" aria-hidden="true" />
+            <div className="relative mb-6 sm:mb-8 px-4 sm:px-5 py-3 sm:py-4 rounded-xl border border-emerald-400/30 bg-emerald-400/[0.08] overflow-hidden shadow-[0_0_30px_rgba(52,211,153,0.15)]">
+              <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-emerald-400 to-emerald-400/60 rounded-l-xl shadow-[0_0_8px_rgba(52,211,153,0.6)]" aria-hidden="true" />
               <div className="flex items-center gap-3">
                 <span className="relative flex h-2.5 w-2.5 flex-shrink-0">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75" />
-                  <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-amber-400 shadow-[0_0_10px_rgba(251,191,36,0.8)]" />
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+                  <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-400 shadow-[0_0_10px_rgba(52,211,153,0.8)]" />
                 </span>
-                <p className="font-mono-space text-xs sm:text-sm text-amber-400 tracking-wider font-medium" style={{ fontFamily: 'var(--font-mono)' }}>
-                  OPENING SOON: MAY 1st, 2026
+                <p className="font-mono-space text-xs sm:text-sm text-emerald-400 tracking-wider font-medium" style={{ fontFamily: 'var(--font-mono)' }}>
+                  OPEN FOR SUMMER 2026
                 </p>
               </div>
             </div>

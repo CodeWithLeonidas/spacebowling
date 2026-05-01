@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect, useRef } from 'react'
+import { useEffect, useRef } from 'react'
 
 const services = [
   {
@@ -73,70 +73,71 @@ function Ticker() {
 
 /* ── Service Card ────────────────────────────────────────────── */
 function ServiceCard({ service, index }) {
-  const [hovered, setHovered] = useState(false)
   const delayClass = ['reveal-d1','reveal-d2','reveal-d3','reveal-d4','reveal-d5','reveal-d6'][index] || ''
 
   return (
     <div
-      className={`reveal ${delayClass} neon-card p-8 group cursor-default`}
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
+      className={`reveal ${delayClass} service-card group`}
+      style={{ '--card-accent': service.accent }}
       aria-label={service.title}
     >
-      {/* Icon box */}
-      <div className="relative mb-6">
-        <div
-          className="text-4xl w-16 h-16 flex items-center justify-center rounded-xl border transition-transform duration-300"
-          style={{
-            borderColor: `color-mix(in srgb, ${service.accent} 25%, transparent)`,
-            background: `color-mix(in srgb, ${service.accent} 10%, transparent)`,
-            transform: hovered ? 'scale(1.08)' : 'scale(1)',
-          }}
-        >
-          {service.icon}
+      {/* Animated corner accents */}
+      <div className="service-card-corner service-card-corner--tl" aria-hidden="true" />
+      <div className="service-card-corner service-card-corner--br" aria-hidden="true" />
+
+      {/* Glow orb behind icon */}
+      <div className="service-card-glow" aria-hidden="true" />
+
+      {/* Scan line effect on hover */}
+      <div className="service-card-scanline" aria-hidden="true" />
+
+      {/* Icon */}
+      <div className="relative mb-5 z-[1]">
+        <div className="service-card-icon">
+          <span className="text-3xl sm:text-4xl">{service.icon}</span>
         </div>
+        {/* Pulse ring */}
+        <div className="service-card-pulse" aria-hidden="true" />
       </div>
 
-      {/* Colored label bumped up significantly */}
+      {/* Index number */}
+      <span
+        className="absolute top-4 right-5 font-mono-space text-[10px] tracking-[0.3em] opacity-20 group-hover:opacity-50 transition-opacity duration-300"
+        style={{ fontFamily: 'var(--font-mono)', color: service.accent }}
+        aria-hidden="true"
+      >
+        0{index + 1}
+      </span>
+
+      {/* Label */}
       <div
-        className="font-mono-space text-sm font-semibold tracking-[0.2em] mb-3"
+        className="font-mono-space text-[11px] sm:text-xs font-semibold tracking-[0.25em] mb-2 relative z-[1]"
         style={{ color: service.accent, fontFamily: 'var(--font-mono)' }}
       >
         {service.short}
       </div>
 
+      {/* Title */}
       <h3
-        className="font-orbitron text-xl font-bold text-white mb-3"
+        className="font-orbitron text-lg sm:text-xl font-bold text-white mb-3 relative z-[1]"
         style={{ fontFamily: 'var(--font-display)' }}
       >
         {service.title}
       </h3>
 
-      <p className="text-white/50 text-base leading-relaxed mb-6" style={{ fontFamily: 'var(--font-body)' }}>
+      {/* Description */}
+      <p className="text-white/45 text-sm sm:text-base leading-relaxed mb-5 relative z-[1]" style={{ fontFamily: 'var(--font-body)' }}>
         {service.desc}
       </p>
 
       {/* Price tag */}
-      <div
-        className="inline-flex items-center gap-2 px-3 py-2 rounded border text-sm font-semibold"
-        style={{
-          borderColor: `color-mix(in srgb, ${service.accent} 30%, transparent)`,
-          color: service.accent,
-          fontFamily: 'var(--font-mono)',
-          background: `color-mix(in srgb, ${service.accent} 6%, transparent)`,
-        }}
-      >
+      <div className="service-card-price relative z-[1]">
+        <span className="service-card-price-dot" aria-hidden="true" />
         {service.price}
       </div>
 
-      {/* Bottom bar */}
-      <div
-        className="absolute bottom-0 left-0 h-[2px] rounded-b-full transition-all duration-400"
-        style={{
-          background: service.accent,
-          width: hovered ? '100%' : '0%',
-        }}
-      />
+      {/* Bottom gradient bar */}
+      <div className="service-card-bar" aria-hidden="true" />
     </div>
   )
 }
