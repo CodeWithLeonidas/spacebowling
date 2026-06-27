@@ -84,7 +84,7 @@ export default function WorkingHours() {
                     <span className="w-1 h-4 sm:h-5 rounded-full bg-[var(--cyan)]/40 group-hover:bg-[var(--cyan)] group-hover:shadow-[0_0_8px_var(--cyan)] transition-all duration-300 flex-shrink-0" aria-hidden="true" />
                     <span className="text-base sm:text-lg font-semibold text-white/90" style={{ fontFamily: 'var(--font-body)' }}>{day}</span>
                   </div>
-                  <span className="font-mono-space text-xs sm:text-sm tracking-[0.15em] sm:tracking-[0.2em] text-[var(--cyan)]/80 font-medium" style={{ fontFamily: 'var(--font-mono)' }}>{day === 'Friday' || day === 'Saturday' ? '18:00 – 03:00' : '18:00 – 01:00'}</span>
+                  <span className="font-mono-space text-xs sm:text-sm tracking-[0.15em] sm:tracking-[0.2em] text-[var(--cyan)]/80 font-medium" style={{ fontFamily: 'var(--font-mono)' }}>{day === 'Friday' || day === 'Saturday' ? '18:00 – 03:00' : '18:00 – 03:00'}</span>
                 </li>
               ))}
             </ul>
@@ -94,7 +94,7 @@ export default function WorkingHours() {
                 HIGH SEASON HOURS: 18:00 – 03:00 DAILY
               </p>
             </div>
-            <span className="sr-only">Space Bowling Greece nightlife and entertainment venue — Open daily 18:00 to 01:00 during tourist season. Best evening activities in Halkidiki. Currently closed until Summer 2026.</span>
+            <span className="sr-only">Space Bowling Greece nightlife and entertainment venue — Open daily 18:00 to 03:00 during tourist season. Best evening activities in Halkidiki. Currently closed until Summer 2026.</span>
           </div>
 
           {/* Map Card */}
