@@ -201,7 +201,7 @@ export default function Navbar() {
                   <a href="https://www.instagram.com/spacebowling/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"
                     className="text-white/40 hover:text-[#E1306C] transition-all duration-300"><FaInstagram size={24} /></a>
                 </div>
-                <p className="font-mono-space text-xs text-white/25 tracking-[0.2em] uppercase" style={{ fontFamily: 'var(--font-mono)' }}>Kalithea · Halkidiki · GR</p>
+                <p className="font-mono-space text-xs text-white/25 tracking-[0.2em] uppercase" style={{ fontFamily: 'var(--font-mono)' }}>Kallithea · Halkidiki · GR</p>
               </div>
             </motion.div>
           </>

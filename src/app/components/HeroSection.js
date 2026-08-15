@@ -269,7 +269,7 @@ export default function HeroSection() {
       </motion.div>
 
       <span className="sr-only">
-        Space Bowling Greece — Top nightlife, entertainment, bowling bar, cocktails, arcade games and billiards in Kalithea, Halkidiki. Best things to do for tourists. Premium tourist attraction with free WiFi and parking. Reopening Summer 2026.
+        Space Bowling Greece — Top nightlife, entertainment, bowling bar, cocktails, arcade games and billiards in Kallithea, Halkidiki. Best things to do for tourists. Premium tourist attraction with free WiFi and parking. Reopening Summer 2026.
       </span>
     </header>
   )

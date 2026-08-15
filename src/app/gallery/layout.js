@@ -1,8 +1,8 @@
 export const metadata = {
   title: 'Gallery | Space Bowling Greece - Nightlife & Entertainment Photos',
   description:
-    'Explore Space Bowling Greece photo gallery! See our neon bowling lanes, cocktail bar, billiards, arcade games, and nightlife atmosphere in Kalithea, Halkidiki. Best entertainment venue photos for tourists looking for things to do.',
-  keywords: 'Space Bowling photos, Halkidiki nightlife photos, bowling bar Kalithea, entertainment venue Halkidiki, tourist attractions photos, things to see in Halkidiki, bowling gallery Greece',
+    'Explore Space Bowling Greece photo gallery! See our neon bowling lanes, cocktail bar, billiards, arcade games, and nightlife atmosphere in Kallithea, Halkidiki. Best entertainment venue photos for tourists looking for things to do.',
+  keywords: 'Space Bowling photos, Halkidiki nightlife photos, bowling bar Kallithea, entertainment venue Halkidiki, tourist attractions photos, things to see in Halkidiki, bowling gallery Greece',
   alternates: {
     canonical: 'https://www.spacebowling.gr/gallery',
   },

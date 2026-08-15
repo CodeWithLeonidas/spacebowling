@@ -183,7 +183,7 @@ export default function LoadingScreen({ onComplete }) {
                 letterSpacing: '0.4em',
               }}
             >
-              KALITHEA · HALKIDIKI · GREECE
+              KALLITHEA · HALKIDIKI · GREECE
             </p>
           </motion.div>
 

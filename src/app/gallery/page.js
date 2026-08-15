@@ -90,7 +90,7 @@ export default function GalleryPage() {
             </span>
             <span className="w-1 h-1 rounded-full bg-[var(--cyan)]/40" />
             <span className="font-mono-space text-xs tracking-[0.3em] text-white/25" style={{ fontFamily: 'var(--font-mono)' }}>
-              KALITHEA · HALKIDIKI
+              KALLITHEA · HALKIDIKI
             </span>
           </div>
         </motion.header>
@@ -198,7 +198,7 @@ export default function GalleryPage() {
       </AnimatePresence>
 
       <span className="sr-only">
-        Space Bowling Greece photo gallery — nightlife, entertainment, bowling bar, cocktails, billiards, and arcade games in Kalithea, Halkidiki. See our neon-lit bowling venue, bar atmosphere, and entertainment facilities. Top tourist attraction photos, things to do in Halkidiki for tourists, families, and groups.
+        Space Bowling Greece photo gallery — nightlife, entertainment, bowling bar, cocktails, billiards, and arcade games in Kallithea, Halkidiki. See our neon-lit bowling venue, bar atmosphere, and entertainment facilities. Top tourist attraction photos, things to do in Halkidiki for tourists, families, and groups.
       </span>
     </div>
   )

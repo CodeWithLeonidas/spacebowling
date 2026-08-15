@@ -74,7 +74,7 @@ export default function AboutUs() {
             <p className="text-white/65 text-xl leading-relaxed" style={{ fontFamily: 'var(--font-body)' }}>
               Welcome to Space Bowling where the thrill of the lanes meets the
               cosmic excitement of the universe. Strike your way through outer space in Greece's stunning tourist district
-              of Kalithea, Halkidiki. We invite you to step into an adventure like no other.
+              of Kallithea, Halkidiki. We invite you to step into an adventure like no other.
             </p>
             <p className="text-white/50 text-lg leading-relaxed" style={{ fontFamily: 'var(--font-body)' }}>
               Our unique universe blends state of the art bowling lanes with
@@ -118,7 +118,7 @@ export default function AboutUs() {
       </div>
 
       <span className="sr-only">
-        Space Bowling Greece — premier tourist attraction and entertainment venue in Kalithea Halkidiki. Things to do in Halkidiki: bowling, nightlife, bar, billiards, arcade games. Fun activities for tourists, families, groups, and couples. Best evening entertainment destination.
+        Space Bowling Greece — premier tourist attraction and entertainment venue in Kallithea Halkidiki. Things to do in Halkidiki: bowling, nightlife, bar, billiards, arcade games. Fun activities for tourists, families, groups, and couples. Best evening entertainment destination.
       </span>
     </section>
   )

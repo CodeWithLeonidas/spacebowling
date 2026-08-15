@@ -199,7 +199,7 @@ export default function OurServices() {
       </div>
 
       <span className="sr-only">
-        Space Bowling Greece services and amenities: 6 bowling lanes 5.5€ per player, billiard table 10€/hour, cocktail bar with signature drinks, free high-speed WiFi, free parking, retro and modern arcade games. Best nightlife, bar, and entertainment venue in Halkidiki. Top things to do for tourists visiting Kalithea.
+        Space Bowling Greece services and amenities: 6 bowling lanes 5.5€ per player, billiard table 10€/hour, cocktail bar with signature drinks, free high-speed WiFi, free parking, retro and modern arcade games. Best nightlife, bar, and entertainment venue in Halkidiki. Top things to do for tourists visiting Kallithea.
       </span>
     </section>
   )

@@ -103,7 +103,7 @@ export default function WorkingHours() {
               <div className="w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center rounded-lg border border-[var(--border-cyan)] text-xl sm:text-2xl flex-shrink-0" aria-hidden="true">📍</div>
               <div>
                 <h3 className="font-orbitron text-xl sm:text-2xl font-bold text-white" style={{ fontFamily: 'var(--font-display)' }}>FIND US HERE</h3>
-                <p className="font-mono-space text-[10px] sm:text-xs tracking-widest text-[var(--cyan)] mt-1" style={{ fontFamily: 'var(--font-mono)' }}>KALITHEA · HALKIDIKI · GREECE</p>
+                <p className="font-mono-space text-[10px] sm:text-xs tracking-widest text-[var(--cyan)] mt-1" style={{ fontFamily: 'var(--font-mono)' }}>KALLITHEA · HALKIDIKI · GREECE</p>
               </div>
             </div>
 
@@ -113,7 +113,7 @@ export default function WorkingHours() {
                 style={{ filter: 'invert(0.92) hue-rotate(180deg) saturate(0.8)' }}
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3053.474560001897!2d23.4511781!3d40.0648254!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14a62a4ae12c08d3%3A0xeb9fcf264ca5f322!2sSpace%20Bowling!5e0!3m2!1sen!2sgr!4v1741849295332!5m2!1sen!2sgr"
                 allowFullScreen="" loading="lazy" referrerPolicy="no-referrer-when-downgrade"
-                title="Space Bowling location map — Kalithea Halkidiki Greece"
+                title="Space Bowling location map — Kallithea Halkidiki Greece"
                 aria-label="Google Map showing Space Bowling Greece location"
               />
               <div className="absolute top-3 left-3 w-6 h-6 border-t-2 border-l-2 border-[var(--cyan)] z-10 pointer-events-none" aria-hidden="true" />
@@ -129,7 +129,7 @@ export default function WorkingHours() {
         </div>
       </div>
 
-      <span className="sr-only">Space Bowling Greece location: Club Aerea, Kalithea, Halkidiki tourist district. Premier nightlife, bowling, bar and entertainment destination for tourists and visitors.</span>
+      <span className="sr-only">Space Bowling Greece location: Club Aerea, Kallithea, Halkidiki tourist district. Premier nightlife, bowling, bar and entertainment destination for tourists and visitors.</span>
     </section>
   )
 }

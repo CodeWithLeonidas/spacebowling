@@ -110,13 +110,13 @@ export default function Footer() {
           <div className="flex items-center gap-2">
             <span className="w-1.5 h-1.5 rounded-full bg-[var(--cyan)] animate-pulse" aria-hidden="true" />
             <span className="font-mono-space text-xs tracking-[0.3em] text-[var(--cyan)]/40 uppercase" style={{ fontFamily: 'var(--font-mono)' }}>
-              KALITHEA · HALKIDIKI · GREECE
+              KALLITHEA · HALKIDIKI · GREECE
             </span>
           </div>
         </div>
       </div>
 
-      <span className="sr-only">Space Bowling Greece — Top nightlife, entertainment, bowling bar, cocktails, billiards, and arcade games in Kalithea, Halkidiki. Best things to do and tourist activities. Contact: spacebowling@outlook.com, +30 697 203 3463, +30 697 965 8337. Club Aerea venue with free WiFi and parking.</span>
+      <span className="sr-only">Space Bowling Greece — Top nightlife, entertainment, bowling bar, cocktails, billiards, and arcade games in Kallithea, Halkidiki. Best things to do and tourist activities. Contact: spacebowling@outlook.com, +30 697 203 3463, +30 697 965 8337. Club Aerea venue with free WiFi and parking.</span>
     </footer>
   )
 }
