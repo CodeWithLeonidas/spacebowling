@@ -12,7 +12,7 @@ export const metadata = {
     template: '%s | Space Bowling Greece',
   },
   description:
-    'Top nightlife & entertainment in Kallithea, Halkidiki. Bowling bar with neon lanes, cocktails, billiards, arcade games. Free WiFi & parking. Best things to do for tourists. Open 18:00-03:00 daily. Reopening Summer 2026.',
+    'Top nightlife & entertainment in Kallithea, Halkidiki. Bowling bar with neon lanes, cocktails, billiards, arcade games. Free WiFi & parking. Best things to do for tourists. Open Sun-Thu 18:00-01:00, Fri & Sat 18:00-03:00, until mid October.',
   keywords: [
     'Space Bowling Greece',
     'things to do in Halkidiki',
@@ -146,11 +146,19 @@ export default function RootLayout({ children }) {
               openingHoursSpecification: [
                 {
                   '@type': 'OpeningHoursSpecification',
-                  dayOfWeek: ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'],
+                  dayOfWeek: ['Sunday','Monday','Tuesday','Wednesday','Thursday'],
+                  opens: '18:00',
+                  closes: '01:00',
+                  validFrom: '2026-05-01',
+                  validThrough: '2026-10-15',
+                },
+                {
+                  '@type': 'OpeningHoursSpecification',
+                  dayOfWeek: ['Friday','Saturday'],
                   opens: '18:00',
                   closes: '03:00',
                   validFrom: '2026-05-01',
-                  validThrough: '2026-10-31',
+                  validThrough: '2026-10-15',
                 },
               ],
               priceRange: '€€',
@@ -174,7 +182,7 @@ export default function RootLayout({ children }) {
                   name: 'What are the best things to do in Halkidiki at night?',
                   acceptedAnswer: {
                     '@type': 'Answer',
-                    text: 'Space Bowling Greece offers the best nightlife in Halkidiki with neon bowling lanes, a cocktail bar, billiards, and arcade games. Located in Kallithea, we provide entertainment for tourists, families, and groups from 18:00 to 03:00 during season.',
+                    text: 'Space Bowling Greece offers the best nightlife in Halkidiki with neon bowling lanes, a cocktail bar, billiards, and arcade games. Located in Kallithea, we provide entertainment for tourists, families, and groups from 18:00 to 01:00 Sunday to Thursday and 18:00 to 03:00 on Friday and Saturday.',
                   },
                 },
                 {
@@ -198,7 +206,7 @@ export default function RootLayout({ children }) {
                   name: 'What tourist activities are available in Halkidiki for families?',
                   acceptedAnswer: {
                     '@type': 'Answer',
-                    text: 'Space Bowling Greece offers family-friendly activities including bowling, arcade games, billiards, and a full bar menu. Located in Kallithea tourist district with ample free parking and WiFi. Open 18:00-03:00 daily during season.',
+                    text: 'Space Bowling Greece offers family-friendly activities including bowling, arcade games, billiards, and a full bar menu. Located in Kallithea tourist district with ample free parking and WiFi. Open Sunday to Thursday 18:00-01:00 and Friday to Saturday 18:00-03:00, until mid October.',
                   },
                 },
                 {

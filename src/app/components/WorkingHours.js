@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from 'react'
 
+const LATE_NIGHT = ['Friday', 'Saturday'] // Fri & Sat run to 03:00, the rest of the week to 01:00
 const days = ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday']
 
 export default function WorkingHours() {
@@ -56,7 +57,7 @@ export default function WorkingHours() {
               <div className="w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center rounded-lg border border-[var(--border-cyan)] text-xl sm:text-2xl flex-shrink-0" aria-hidden="true">🕐</div>
               <div>
                 <h3 className="font-orbitron text-xl sm:text-2xl font-bold text-white" style={{ fontFamily: 'var(--font-display)' }}>WORKING HOURS</h3>
-                <p className="font-mono-space text-[10px] sm:text-xs tracking-widest text-[var(--cyan)] mt-1" style={{ fontFamily: 'var(--font-mono)' }}>SUMMER 2026</p>
+                <p className="font-mono-space text-[10px] sm:text-xs tracking-widest text-[var(--cyan)] mt-1" style={{ fontFamily: 'var(--font-mono)' }}>SEASON 2026</p>
               </div>
             </div>
 
@@ -69,7 +70,7 @@ export default function WorkingHours() {
                   <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-400 shadow-[0_0_10px_rgba(52,211,153,0.8)]" />
                 </span>
                 <p className="font-mono-space text-xs sm:text-sm text-emerald-400 tracking-wider font-medium" style={{ fontFamily: 'var(--font-mono)' }}>
-                  OPEN FOR SUMMER 2026
+                  OPEN UNTIL MID OCTOBER
                 </p>
               </div>
             </div>
@@ -84,17 +85,17 @@ export default function WorkingHours() {
                     <span className="w-1 h-4 sm:h-5 rounded-full bg-[var(--cyan)]/40 group-hover:bg-[var(--cyan)] group-hover:shadow-[0_0_8px_var(--cyan)] transition-all duration-300 flex-shrink-0" aria-hidden="true" />
                     <span className="text-base sm:text-lg font-semibold text-white/90" style={{ fontFamily: 'var(--font-body)' }}>{day}</span>
                   </div>
-                  <span className="font-mono-space text-xs sm:text-sm tracking-[0.15em] sm:tracking-[0.2em] text-[var(--cyan)]/80 font-medium" style={{ fontFamily: 'var(--font-mono)' }}>{day === 'Friday' || day === 'Saturday' ? '18:00 – 03:00' : '18:00 – 03:00'}</span>
+                  <span className="font-mono-space text-xs sm:text-sm tracking-[0.15em] sm:tracking-[0.2em] text-[var(--cyan)]/80 font-medium" style={{ fontFamily: 'var(--font-mono)' }}>{LATE_NIGHT.includes(day) ? '18:00 – 03:00' : '18:00 – 01:00'}</span>
                 </li>
               ))}
             </ul>
 
             <div className="mt-6 pt-6 border-t border-white/[0.06]">
               <p className="font-mono-space text-xs tracking-widest text-white/30 text-center" style={{ fontFamily: 'var(--font-mono)' }}>
-                HIGH SEASON HOURS: 18:00 – 03:00 DAILY
+                SUN–THU 18:00 – 01:00 · FRI &amp; SAT 18:00 – 03:00
               </p>
             </div>
-            <span className="sr-only">Space Bowling Greece nightlife and entertainment venue — Open daily 18:00 to 03:00 during tourist season. Best evening activities in Halkidiki. Currently closed until Summer 2026.</span>
+            <span className="sr-only">Space Bowling Greece nightlife and entertainment venue — Open Sunday to Thursday 18:00 to 01:00 and Friday to Saturday 18:00 to 03:00. Best evening activities in Halkidiki. Open until mid October.</span>
           </div>
 
           {/* Map Card */}

@@ -3,7 +3,7 @@ import HomeClient from "./HomeClient";
 export const generateMetadata = () => ({
   title: "Space Bowling Greece | Nightlife & Entertainment Halkidiki",
   description:
-    "Best nightlife & things to do in Halkidiki! Bowling bar, cocktails, billiards, arcade games in Kallithea. Free WiFi & parking. Open 18:00-03:00.",
+    "Best nightlife & things to do in Halkidiki! Bowling bar, cocktails, billiards, arcade in Kallithea. Open Sun-Thu 18:00-01:00, Fri & Sat 18:00-03:00.",
   alternates: {
     canonical: "https://www.spacebowling.gr/",
   },
@@ -26,7 +26,7 @@ export const generateMetadata = () => ({
     card: "summary_large_image",
     title: "Space Bowling Greece | Nightlife Halkidiki",
     description:
-      "Best nightlife in Halkidiki! Bowling bar, cocktails, arcade, billiards. Free WiFi & parking. Open 18:00-03:00 daily.",
+      "Best nightlife in Halkidiki! Bowling bar, cocktails, arcade, billiards. Free WiFi & parking. Open Sun-Thu 18:00-01:00, Fri & Sat 18:00-03:00.",
     images: ["https://www.spacebowling.gr/images/gallery.jpg"],
   },
 });

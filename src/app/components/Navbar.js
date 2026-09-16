@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
 import { FaBars, FaTimes, FaFacebook, FaInstagram } from 'react-icons/fa'
+import LocalClock from './LocalClock'
 
 const navItems = [
   { label: 'HOME',     href: '/#home' },
@@ -98,14 +99,14 @@ export default function Navbar() {
         aria-label="Main Navigation"
         role="navigation"
       >
-        <div className="container mx-auto px-8 flex items-center justify-between">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
 
           {/* Logo */}
           <Link href="/" aria-label="Space Bowling Home" className="group relative flex items-baseline gap-1 flex-shrink-0">
-            <span className="font-orbitron text-2xl lg:text-3xl font-black tracking-widest gradient-text leading-none" style={{ fontFamily: 'var(--font-display)' }}>
+            <span className="font-orbitron text-xl sm:text-2xl lg:text-3xl font-black tracking-[0.12em] sm:tracking-widest gradient-text leading-none" style={{ fontFamily: 'var(--font-display)' }}>
               SPACE
             </span>
-            <span className="font-orbitron text-2xl lg:text-3xl font-thin tracking-[0.35em] text-white/65 leading-none" style={{ fontFamily: 'var(--font-display)' }}>
+            <span className="font-orbitron text-xl sm:text-2xl lg:text-3xl font-thin tracking-[0.18em] sm:tracking-[0.35em] text-white/65 leading-none" style={{ fontFamily: 'var(--font-display)' }}>
               BOWLING
             </span>
             <span className="absolute -bottom-1.5 left-0 w-0 group-hover:w-full h-px bg-gradient-to-r from-[var(--cyan)] to-[var(--magenta)] transition-all duration-500" />
@@ -133,7 +134,9 @@ export default function Navbar() {
           </ul>
 
           {/* Right: socials + hamburger */}
-          <div className="flex items-center gap-4 flex-shrink-0">
+          <div className="flex items-center gap-2.5 sm:gap-4 flex-shrink-0">
+            <LocalClock />
+
             <div className="hidden lg:flex items-center gap-5">
               <a href="https://www.facebook.com/SpaceBowlingCentre" target="_blank" rel="noopener noreferrer" aria-label="Facebook"
                 className="text-white/50 hover:text-[#1877F2] transition-all duration-300"><FaFacebook size={20} /></a>
