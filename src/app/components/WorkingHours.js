@@ -1,12 +1,47 @@
 'use client'
 
 import { useEffect, useRef } from 'react'
+import { FaFacebook, FaInstagram } from 'react-icons/fa'
+import { FINAL_NIGHTS, REOPENING, hoursLabel, isSeasonOver, nightStatus, useNow } from './season'
 
-const LATE_NIGHT = ['Friday', 'Saturday'] // Fri & Sat run to 03:00, the rest of the week to 01:00
-const days = ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday']
+const NIGHT_TAG = { open: 'OPEN NOW', tonight: 'TONIGHT' }
+
+function FollowLinks({ className = '' }) {
+  return (
+    // Wraps to stacked full-width buttons on the narrowest phones instead of overflowing
+    <div className={`flex flex-row flex-wrap gap-3 ${className}`}>
+      <a
+        href="https://www.instagram.com/spacebowling/"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Follow Space Bowling on Instagram"
+        className="group flex-1 flex items-center justify-center gap-2 px-3 min-h-11 rounded-lg border border-white/[0.1] bg-white/[0.02] hover:border-[#E1306C]/50 hover:bg-[#E1306C]/[0.07] transition-all duration-300"
+      >
+        <FaInstagram size={17} className="text-[#E1306C]/80 group-hover:text-[#E1306C] transition-colors duration-300 flex-shrink-0" />
+        <span className="font-mono-space text-xs tracking-[0.1em] text-white/60 group-hover:text-white transition-colors duration-300" style={{ fontFamily: 'var(--font-mono)' }}>
+          INSTAGRAM
+        </span>
+      </a>
+      <a
+        href="https://www.facebook.com/SpaceBowlingCentre"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Follow Space Bowling on Facebook"
+        className="group flex-1 flex items-center justify-center gap-2 px-3 min-h-11 rounded-lg border border-white/[0.1] bg-white/[0.02] hover:border-[#1877F2]/50 hover:bg-[#1877F2]/[0.07] transition-all duration-300"
+      >
+        <FaFacebook size={17} className="text-[#1877F2]/80 group-hover:text-[#1877F2] transition-colors duration-300 flex-shrink-0" />
+        <span className="font-mono-space text-xs tracking-[0.1em] text-white/60 group-hover:text-white transition-colors duration-300" style={{ fontFamily: 'var(--font-mono)' }}>
+          FACEBOOK
+        </span>
+      </a>
+    </div>
+  )
+}
 
 export default function WorkingHours() {
   const sectionRef = useRef(null)
+  const now = useNow()
+  const over = isSeasonOver(now)
 
   useEffect(() => {
     const el = sectionRef.current
@@ -57,45 +92,120 @@ export default function WorkingHours() {
               <div className="w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center rounded-lg border border-[var(--border-cyan)] text-xl sm:text-2xl flex-shrink-0" aria-hidden="true">🕐</div>
               <div>
                 <h3 className="font-orbitron text-xl sm:text-2xl font-bold text-white" style={{ fontFamily: 'var(--font-display)' }}>WORKING HOURS</h3>
-                <p className="font-mono-space text-[10px] sm:text-xs tracking-widest text-[var(--cyan)] mt-1" style={{ fontFamily: 'var(--font-mono)' }}>SEASON 2026</p>
-              </div>
-            </div>
-
-            {/* Status banner */}
-            <div className="relative mb-6 sm:mb-8 px-4 sm:px-5 py-3 sm:py-4 rounded-xl border border-emerald-400/30 bg-emerald-400/[0.08] overflow-hidden shadow-[0_0_30px_rgba(52,211,153,0.15)]">
-              <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-emerald-400 to-emerald-400/60 rounded-l-xl shadow-[0_0_8px_rgba(52,211,153,0.6)]" aria-hidden="true" />
-              <div className="flex items-center gap-3">
-                <span className="relative flex h-2.5 w-2.5 flex-shrink-0">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-                  <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-400 shadow-[0_0_10px_rgba(52,211,153,0.8)]" />
-                </span>
-                <p className="font-mono-space text-xs sm:text-sm text-emerald-400 tracking-wider font-medium" style={{ fontFamily: 'var(--font-mono)' }}>
-                  OPEN UNTIL MID OCTOBER
+                <p className="font-mono-space text-[10px] sm:text-xs tracking-widest text-[var(--cyan)] mt-1" style={{ fontFamily: 'var(--font-mono)' }}>
+                  {over ? `OFF-SEASON · BACK ${REOPENING}` : 'SEASON 2026 · FINAL WEEKEND'}
                 </p>
               </div>
             </div>
 
-            <ul className="space-y-2" aria-label="Weekly working hours">
-              {days.map((day, i) => (
-                <li
-                  key={day}
-                  className={`reveal reveal-d${Math.min(i + 1, 6)} flex items-center justify-between px-3 sm:px-4 py-2.5 sm:py-3.5 rounded-lg border border-[var(--border-cyan)]/20 hover:border-[var(--border-cyan)] hover:bg-[var(--cyan)]/[0.03] transition-all duration-300 group bg-white/[0.01]`}
-                >
-                  <div className="flex items-center gap-2 sm:gap-3">
-                    <span className="w-1 h-4 sm:h-5 rounded-full bg-[var(--cyan)]/40 group-hover:bg-[var(--cyan)] group-hover:shadow-[0_0_8px_var(--cyan)] transition-all duration-300 flex-shrink-0" aria-hidden="true" />
-                    <span className="text-base sm:text-lg font-semibold text-white/90" style={{ fontFamily: 'var(--font-body)' }}>{day}</span>
-                  </div>
-                  <span className="font-mono-space text-xs sm:text-sm tracking-[0.15em] sm:tracking-[0.2em] text-[var(--cyan)]/80 font-medium" style={{ fontFamily: 'var(--font-mono)' }}>{LATE_NIGHT.includes(day) ? '18:00 – 03:00' : '18:00 – 01:00'}</span>
-                </li>
-              ))}
-            </ul>
+            {/* Status banner */}
+            {over ? (
+              <div className="relative mb-6 sm:mb-8 px-4 sm:px-5 py-3 sm:py-4 rounded-xl border border-[var(--violet)]/40 bg-[var(--violet)]/[0.1] overflow-hidden shadow-[0_0_30px_rgba(123,47,255,0.15)]">
+                <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-[var(--violet)] to-[var(--violet)]/60 rounded-l-xl shadow-[0_0_8px_rgba(123,47,255,0.6)]" aria-hidden="true" />
+                <div className="flex items-center gap-3">
+                  <span className="relative inline-flex rounded-full h-2.5 w-2.5 flex-shrink-0 bg-[var(--violet)] shadow-[0_0_10px_rgba(123,47,255,0.8)]" />
+                  <p className="font-mono-space text-xs sm:text-sm text-white/85 tracking-wider font-medium" style={{ fontFamily: 'var(--font-mono)' }}>
+                    CLOSED UNTIL {REOPENING}
+                  </p>
+                </div>
+              </div>
+            ) : (
+              <div className="relative mb-6 sm:mb-8 px-4 sm:px-5 py-3 sm:py-4 rounded-xl border border-[var(--gold)]/30 bg-[var(--gold)]/[0.07] overflow-hidden shadow-[0_0_30px_rgba(255,215,0,0.1)]">
+                <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-[var(--gold)] to-[var(--gold)]/60 rounded-l-xl shadow-[0_0_8px_rgba(255,215,0,0.6)]" aria-hidden="true" />
+                <div className="flex items-center gap-3">
+                  <span className="relative flex h-2.5 w-2.5 flex-shrink-0">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[var(--gold)] opacity-75" />
+                    <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-[var(--gold)] shadow-[0_0_10px_rgba(255,215,0,0.8)]" />
+                  </span>
+                  <p className="font-mono-space text-xs sm:text-sm text-[var(--gold)] tracking-wider font-medium" style={{ fontFamily: 'var(--font-mono)' }}>
+                    FINAL WEEKEND · 9–11 OCT
+                  </p>
+                </div>
+                <p className="mt-1.5 pl-[22px] text-sm sm:text-base text-white/60 leading-snug" style={{ fontFamily: 'var(--font-body)' }}>
+                  The last three nights of our 2026 season.
+                </p>
+              </div>
+            )}
 
-            <div className="mt-6 pt-6 border-t border-white/[0.06]">
-              <p className="font-mono-space text-xs tracking-widest text-white/30 text-center" style={{ fontFamily: 'var(--font-mono)' }}>
-                SUN–THU 18:00 – 01:00 · FRI &amp; SAT 18:00 – 03:00
-              </p>
-            </div>
-            <span className="sr-only">Space Bowling Greece nightlife and entertainment venue — Open Sunday to Thursday 18:00 to 01:00 and Friday to Saturday 18:00 to 03:00. Best evening activities in Halkidiki. Open until mid October.</span>
+            {over ? (
+              /* Off-season */
+              <div className="text-center py-2 sm:py-4">
+                <p className="font-orbitron text-xl sm:text-2xl font-black gradient-text" style={{ fontFamily: 'var(--font-display)' }}>
+                  SEE YOU IN {REOPENING}
+                </p>
+                <p className="mt-3 text-base text-white/60 leading-relaxed max-w-sm mx-auto" style={{ fontFamily: 'var(--font-body)' }}>
+                  Thank you for an unforgettable 2026 season! Our lanes are resting for the winter. Follow us to be the first to hear when we reopen.
+                </p>
+                <FollowLinks className="mt-6" />
+              </div>
+            ) : (
+              <>
+                <ul className="space-y-2" aria-label="Final weekend opening hours">
+                  {FINAL_NIGHTS.map((night, i) => {
+                    const status = nightStatus(night, now)
+                    const tag = NIGHT_TAG[status] ?? (i === FINAL_NIGHTS.length - 1 && status !== 'past' ? 'FINAL NIGHT' : null)
+                    const live = status === 'open' || status === 'tonight'
+                    return (
+                      // Reveal classes stay on this static wrapper — the observer adds
+                      // .is-visible imperatively, and a changing className would wipe it.
+                      <li key={night.day} className={`reveal reveal-d${i + 1}`}>
+                        <div
+                          className={`flex items-center justify-between gap-3 px-2.5 sm:px-4 py-2.5 sm:py-3 rounded-lg border transition-all duration-300 ${
+                            live
+                              ? 'border-[var(--gold)]/60 bg-[var(--gold)]/[0.06] shadow-[0_0_24px_rgba(255,215,0,0.1)]'
+                              : 'border-[var(--border-cyan)]/20 bg-white/[0.01] hover:border-[var(--border-cyan)] hover:bg-[var(--cyan)]/[0.03]'
+                          } ${status === 'past' ? 'opacity-40' : ''}`}
+                        >
+                          <div className="flex items-center gap-2.5 sm:gap-3 min-w-0">
+                            <div
+                              className={`w-9 h-9 sm:w-11 sm:h-11 flex flex-col items-center justify-center rounded-lg border flex-shrink-0 ${live ? 'border-[var(--gold)]/50 bg-[var(--gold)]/[0.08]' : 'border-[var(--border-cyan)] bg-[var(--cyan)]/[0.03]'}`}
+                              aria-hidden="true"
+                            >
+                              <span className="font-orbitron text-sm sm:text-base font-black leading-none text-white" style={{ fontFamily: 'var(--font-display)' }}>{night.date}</span>
+                              <span className={`text-[8px] sm:text-[9px] tracking-[0.15em] leading-none mt-1 ${live ? 'text-[var(--gold)]/80' : 'text-[var(--cyan)]/70'}`} style={{ fontFamily: 'var(--font-mono)' }}>OCT</span>
+                            </div>
+                            <div className="min-w-0">
+                              <span className="block text-base sm:text-lg font-semibold text-white/90 leading-tight" style={{ fontFamily: 'var(--font-body)' }}>
+                                {night.day}<span className="sr-only"> {night.date} October</span>
+                              </span>
+                              {tag && (
+                                <span
+                                  className={`flex items-center gap-1.5 mt-0.5 text-[9px] sm:text-[10px] tracking-[0.18em] leading-none ${status === 'open' ? 'text-emerald-400' : 'text-[var(--gold)]'}`}
+                                  style={{ fontFamily: 'var(--font-mono)' }}
+                                >
+                                  {status === 'open' && (
+                                    <span className="relative flex h-1.5 w-1.5 flex-shrink-0" aria-hidden="true">
+                                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+                                      <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-400" />
+                                    </span>
+                                  )}
+                                  {tag}
+                                </span>
+                              )}
+                            </div>
+                          </div>
+                          <span className={`font-mono-space text-xs sm:text-sm tracking-[0.1em] sm:tracking-[0.2em] font-medium whitespace-nowrap flex-shrink-0 tabular-nums ${live ? 'text-[var(--gold)]' : 'text-[var(--cyan)]/80'}`} style={{ fontFamily: 'var(--font-mono)' }}>
+                            {hoursLabel(night)}
+                          </span>
+                        </div>
+                      </li>
+                    )
+                  })}
+                </ul>
+
+                {/* After the finale */}
+                <div className="mt-6 rounded-xl border border-[var(--violet)]/30 bg-[var(--violet)]/[0.06] p-4 sm:p-5">
+                  <p className="font-orbitron text-sm font-bold tracking-[0.08em] sm:tracking-[0.15em] text-white" style={{ fontFamily: 'var(--font-display)' }}>
+                    CLOSING FOR WINTER
+                  </p>
+                  <p className="mt-1 text-sm sm:text-base text-white/60 leading-snug" style={{ fontFamily: 'var(--font-body)' }}>
+                    From Monday 12 October we&apos;re closed until <span className="text-white/90 font-semibold">Summer 2027</span>
+                  </p>
+                  <FollowLinks className="mt-4" />
+                </div>
+              </>
+            )}
+            <span className="sr-only">Space Bowling Greece nightlife and entertainment venue — Final weekend of the 2026 season: Friday 9 to Sunday 11 October, 18:00 to 01:00. Closed for the winter from Monday 12 October, reopening Summer 2027.</span>
           </div>
 
           {/* Map Card */}

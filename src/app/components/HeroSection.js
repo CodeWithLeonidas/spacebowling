@@ -2,6 +2,7 @@
 
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { useEffect, useRef, useState } from 'react'
+import { REOPENING, isSeasonOver, useNow } from './season'
 
 /* ── Deterministic stars ─────────────────────────────────────── */
 const STARS = Array.from({ length: 90 }, (_, i) => ({
@@ -43,6 +44,31 @@ function OrbitRings() {
         </motion.div>
       ))}
     </div>
+  )
+}
+
+/* ── Season status ───────────────────────────────────────────
+   Own component so the once-a-minute clock re-renders only the pill,
+   not the animated star field above. */
+function SeasonPill() {
+  const over = isSeasonOver(useNow())
+  return (
+    <>
+      <span className="relative flex h-2.5 w-2.5">
+        {!over && <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[var(--gold)] opacity-75" />}
+        <span className={`relative inline-flex rounded-full h-2.5 w-2.5 ${over ? 'bg-[var(--violet)] shadow-[0_0_12px_rgba(123,47,255,0.8)]' : 'bg-[var(--gold)] shadow-[0_0_12px_rgba(255,215,0,0.8)]'}`} />
+      </span>
+      <span
+        className={`font-mono-space text-xs tracking-[0.2em] sm:tracking-[0.3em] uppercase border px-4 py-1.5 rounded-full backdrop-blur-sm ${
+          over
+            ? 'text-white/80 border-[var(--violet)]/50 bg-[var(--violet)]/[0.12] shadow-[0_0_20px_rgba(123,47,255,0.2)]'
+            : 'text-[var(--gold)] border-[var(--gold)]/40 bg-[var(--gold)]/[0.08] shadow-[0_0_20px_rgba(255,215,0,0.15)]'
+        }`}
+        style={{ fontFamily: 'var(--font-mono)' }}
+      >
+        {over ? `CLOSED UNTIL ${REOPENING}` : 'FINAL WEEKEND OF 2026'}
+      </span>
+    </>
   )
 }
 
@@ -204,16 +230,7 @@ export default function HeroSection() {
           transition={{ duration: 0.8, delay: 0.2 }}
           className="inline-flex items-center gap-3 mb-10"
         >
-          <span className="relative flex h-2.5 w-2.5">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-            <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-400 shadow-[0_0_12px_rgba(52,211,153,0.8)]" />
-          </span>
-          <span
-            className="font-mono-space text-xs tracking-[0.3em] text-emerald-400 uppercase border border-emerald-400/40 px-4 py-1.5 rounded-full backdrop-blur-sm bg-emerald-400/[0.08] shadow-[0_0_20px_rgba(52,211,153,0.15)]"
-            style={{ fontFamily: 'var(--font-mono)' }}
-          >
-            OPEN FOR 2026
-          </span>
+          <SeasonPill />
         </motion.div>
 
         {/* Headline */}
@@ -269,7 +286,7 @@ export default function HeroSection() {
       </motion.div>
 
       <span className="sr-only">
-        Space Bowling Greece — Top nightlife, entertainment, bowling bar, cocktails, arcade games and billiards in Kallithea, Halkidiki. Best things to do for tourists. Premium tourist attraction with free WiFi and parking. Open Sunday to Thursday 18:00 to 01:00 and Friday to Saturday 18:00 to 03:00, until mid October.
+        Space Bowling Greece — Top nightlife, entertainment, bowling bar, cocktails, arcade games and billiards in Kallithea, Halkidiki. Best things to do for tourists. Premium tourist attraction with free WiFi and parking. Final weekend of the 2026 season: Friday 9 to Sunday 11 October, 18:00 to 01:00. Closed for the winter from Monday 12 October, reopening Summer 2027.
       </span>
     </header>
   )
